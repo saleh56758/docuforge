@@ -30,5 +30,9 @@ export const SITE_CONFIG = {
   description:
     'Free online image compressor, resizer, cropper, format converter, and PDF tools (merge, split, rotate, compress, image-to-pdf). 100% private client-side processing with zero server uploads.',
   defaultOgImage: '/og-image.jpg',
-  googleVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || ''
+  // Kept here so the static Cloudflare Pages build always emits the Search
+  // Console meta tag. The environment variable may override it if ownership
+  // is ever moved to another Google property.
+  googleVerification:
+    process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'C8W_fxjFkmWIALu1RMXPAbfPJxAq-Mm4aI4KuCfm8MU'
 };
