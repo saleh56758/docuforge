@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, RotateCw } from 'lucide-react';
-import { PDFDocument, degrees } from 'pdf-lib';
 import { formatBytes, downloadBlob, readFileAsArrayBuffer, replaceFileExtension } from '@/utils/fileHelpers';
 
 export default function RotatePdf() {
@@ -25,6 +24,7 @@ export default function RotatePdf() {
     setError(null);
     setSuccessInfo(null);
     try {
+      const { PDFDocument } = await import('pdf-lib');
       const buf = await readFileAsArrayBuffer(selectedFile);
       const pdfDoc = await PDFDocument.load(buf, { ignoreEncryption: true });
       const pages = pdfDoc.getPageCount();
@@ -44,6 +44,7 @@ export default function RotatePdf() {
     setSuccessInfo(null);
 
     try {
+      const { PDFDocument, degrees } = await import('pdf-lib');
       const pdfDoc = await PDFDocument.load(buffer, { ignoreEncryption: true });
       const pages = pdfDoc.getPages();
 
@@ -142,7 +143,7 @@ export default function RotatePdf() {
           <div className="dropzone-icon" style={{ color: 'var(--color-pdf-tool)' }}>
             <RotateCw size={28} />
           </div>
-          <h3 className="dropzone-title">Upload a PDF to permanently rotate pages</h3>
+          <h2 className="dropzone-title">Upload a PDF to permanently rotate pages</h2>
           <p className="dropzone-subtitle">Fix sideways or upside-down scans and pages</p>
           <button type="button" className="dropzone-btn" style={{ backgroundColor: 'var(--color-pdf-tool)' }}>
             Select PDF Document

@@ -332,7 +332,7 @@ export default function ImageCropper() {
           <div className="dropzone-icon">
             <Upload size={28} />
           </div>
-          <h3 className="dropzone-title">Upload photo to crop</h3>
+          <h2 className="dropzone-title">Upload photo to crop</h2>
           <p className="dropzone-subtitle">Supports JPG, PNG, and WebP up to 25 MB</p>
           <button type="button" className="dropzone-btn">
             Browse Image

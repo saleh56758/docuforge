@@ -358,6 +358,13 @@ button, input, select, textarea {
   margin-bottom: 2rem;
 }
 
+.hero-discovery-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
 /* Tool Search & Filter Bar */
 .search-filter-wrapper {
   max-width: 680px;
@@ -420,6 +427,7 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1rem;
 }
@@ -1496,5 +1504,34 @@ button, input, select, textarea {
     flex-direction: column;
     gap: 0.75rem;
     text-align: center;
+  }
+  .prose {
+    overflow-wrap: anywhere;
+  }
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .tool-grid,
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .tool-card {
+    padding: 1rem;
+  }
+  .tool-page-title {
+    font-size: 1.875rem !important;
+  }
+  .filter-tab-btn {
+    padding: 0.4375rem 0.75rem;
+    font-size: 0.8125rem;
   }
 }

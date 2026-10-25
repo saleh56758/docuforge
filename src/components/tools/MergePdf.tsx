@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 import { Upload, Download, ArrowUp, ArrowDown, Trash2, FileText, Plus, AlertCircle } from 'lucide-react';
-import { PDFDocument } from 'pdf-lib';
 import { formatBytes, downloadBlob, readFileAsArrayBuffer } from '@/utils/fileHelpers';
 
 interface PdfItem {
@@ -22,6 +21,7 @@ export default function MergePdf() {
   const handleFiles = async (fileList: FileList | File[]) => {
     setError(null);
     const newItems: PdfItem[] = [];
+    const { PDFDocument } = await import('pdf-lib');
 
     for (let i = 0; i < fileList.length; i++) {
       const file = fileList[i];
@@ -72,6 +72,7 @@ export default function MergePdf() {
     setError(null);
 
     try {
+      const { PDFDocument } = await import('pdf-lib');
       const mergedPdf = await PDFDocument.create();
 
       for (let i = 0; i < items.length; i++) {
@@ -127,7 +128,7 @@ export default function MergePdf() {
           <div className="dropzone-icon" style={{ color: 'var(--color-pdf-tool)' }}>
             <Upload size={28} />
           </div>
-          <h3 className="dropzone-title">Select multiple PDF files to combine</h3>
+          <h2 className="dropzone-title">Select multiple PDF files to combine</h2>
           <p className="dropzone-subtitle">Drag and drop two or more PDF files</p>
           <button type="button" className="dropzone-btn" style={{ backgroundColor: 'var(--color-pdf-tool)' }}>
             Select PDF Files

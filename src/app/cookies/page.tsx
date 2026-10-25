@@ -1,11 +1,24 @@
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Cookie Policy — DocuForge',
   description: 'Detailed explanation of cookie usage and local preferences on DocuForge.',
   alternates: {
-    canonical: 'https://docuforge.app/cookies'
+    canonical: getAbsoluteUrl('cookies')
+  },
+  openGraph: {
+    title: 'Cookie Policy — DocuForge',
+    description: 'Detailed explanation of cookie usage and local preferences on DocuForge.',
+    url: getAbsoluteUrl('cookies'),
+    images: [SITE_CONFIG.defaultOgImage]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cookie Policy — DocuForge',
+    description: 'Detailed explanation of cookie usage and local preferences on DocuForge.',
+    images: [SITE_CONFIG.defaultOgImage]
   }
 };
 

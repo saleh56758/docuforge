@@ -121,7 +121,7 @@ export default function JpgToWebp() {
           <div className="dropzone-icon">
             <Upload size={28} />
           </div>
-          <h3 className="dropzone-title">Select JPG file to convert to WebP</h3>
+          <h2 className="dropzone-title">Select JPG file to convert to WebP</h2>
           <p className="dropzone-subtitle">Drop .jpg or .jpeg images up to 30 MB</p>
           <button type="button" className="dropzone-btn">
             Browse JPG Image
@@ -178,7 +178,11 @@ export default function JpgToWebp() {
           {previewUrl && (
             <div className="preview-container">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={previewUrl} alt="Preview" className="preview-img" />
+              <img
+                src={previewUrl}
+                alt={file ? `WebP preview of ${file.name}` : 'Converted WebP image preview'}
+                className="preview-img"
+              />
             </div>
           )}
 

@@ -139,7 +139,7 @@ export default function ImageConverter() {
           <div className="dropzone-icon">
             <Upload size={28} />
           </div>
-          <h3 className="dropzone-title">Select an image to convert format</h3>
+          <h2 className="dropzone-title">Select an image to convert format</h2>
           <p className="dropzone-subtitle">Convert freely between JPG, PNG, and WebP</p>
           <button type="button" className="dropzone-btn">
             Browse Image
@@ -229,7 +229,11 @@ export default function ImageConverter() {
           {previewUrl && (
             <div className="preview-container">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={previewUrl} alt="Preview" className="preview-img" />
+              <img
+                src={previewUrl}
+                alt={file ? `Converted preview of ${file.name}` : 'Converted image preview'}
+                className="preview-img"
+              />
             </div>
           )}
 

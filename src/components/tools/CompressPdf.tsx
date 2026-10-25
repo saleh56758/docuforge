@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, Minimize } from 'lucide-react';
-import { PDFDocument } from 'pdf-lib';
 import { formatBytes, calculateSavings, downloadBlob, readFileAsArrayBuffer, replaceFileExtension } from '@/utils/fileHelpers';
 
 export default function CompressPdf() {
@@ -27,6 +26,7 @@ export default function CompressPdf() {
     setStatusMsg('');
 
     try {
+      const { PDFDocument } = await import('pdf-lib');
       const buf = await readFileAsArrayBuffer(selectedFile);
       const pdfDoc = await PDFDocument.load(buf, { ignoreEncryption: true });
       setFile(selectedFile);
@@ -44,6 +44,7 @@ export default function CompressPdf() {
     setStatusMsg('Analyzing document structure and stripping orphaned streams...');
 
     try {
+      const { PDFDocument } = await import('pdf-lib');
       // Load source document
       const srcDoc = await PDFDocument.load(buffer, { ignoreEncryption: true });
 
@@ -120,7 +121,7 @@ export default function CompressPdf() {
           <div className="dropzone-icon" style={{ color: 'var(--color-pdf-tool)' }}>
             <Minimize size={28} />
           </div>
-          <h3 className="dropzone-title">Upload a PDF to compress and optimize</h3>
+          <h2 className="dropzone-title">Upload a PDF to compress and optimize</h2>
           <p className="dropzone-subtitle">Discards orphaned objects and compresses PDF streams</p>
           <button type="button" className="dropzone-btn" style={{ backgroundColor: 'var(--color-pdf-tool)' }}>
             Choose PDF Document

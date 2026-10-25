@@ -1,0 +1,23 @@
+{
+  "name": "DocuForge — Free Online Image & PDF Utilities",
+  "short_name": "DocuForge",
+  "description": "Free, fast, and 100% private online image and PDF utility tools. Process files locally in your browser.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

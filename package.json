@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start -p 3000",
-    "lint": "next lint"
+    "start": "node scripts/serve-static.mjs",
+    "lint": "next lint",
+    "test:seo": "node scripts/verify-seo.mjs"
   },
   "dependencies": {
     "next": "^14.2.24",

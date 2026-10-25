@@ -148,7 +148,7 @@ export default function ImageCompressor() {
           <div className="dropzone-icon">
             <Upload size={28} />
           </div>
-          <h3 className="dropzone-title">Choose an image or drop it here</h3>
+          <h2 className="dropzone-title">Choose an image or drop it here</h2>
           <p className="dropzone-subtitle">Supports JPG, PNG, and WebP up to 25 MB</p>
           <button type="button" className="dropzone-btn">
             Browse Image
@@ -225,7 +225,11 @@ export default function ImageCompressor() {
           {previewUrl && (
             <div className="preview-container">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={previewUrl} alt="Preview" className="preview-img" />
+              <img
+                src={previewUrl}
+                alt={file ? `Compressed preview of ${file.name}` : 'Compressed image preview'}
+                className="preview-img"
+              />
             </div>
           )}
 

@@ -159,7 +159,7 @@ export default function ImageResizer() {
           <div className="dropzone-icon">
             <Upload size={28} />
           </div>
-          <h3 className="dropzone-title">Select an image to resize</h3>
+          <h2 className="dropzone-title">Select an image to resize</h2>
           <p className="dropzone-subtitle">Supports JPG, PNG, and WebP up to 30 MB</p>
           <button type="button" className="dropzone-btn">
             Browse Image
@@ -295,7 +295,11 @@ export default function ImageResizer() {
           {previewUrl && (
             <div className="preview-container">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={previewUrl} alt="Preview" className="preview-img" />
+              <img
+                src={previewUrl}
+                alt={file ? `Resized preview of ${file.name}` : 'Resized image preview'}
+                className="preview-img"
+              />
             </div>
           )}
 

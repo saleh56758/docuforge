@@ -3,13 +3,29 @@ import Link from 'next/link';
 import { BookOpen, ArrowRight, Clock, Calendar } from 'lucide-react';
 import { GUIDES } from '@/data/guides';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 
 export const metadata: Metadata = {
   title: 'Guides & Tutorials — DocuForge',
   description:
     'Comprehensive guides on image compression techniques, format comparisons, secure PDF management, and web performance optimization.',
   alternates: {
-    canonical: 'https://docuforge.app/guides'
+    canonical: getAbsoluteUrl('guides')
+  },
+  openGraph: {
+    type: 'website',
+    title: 'Guides & Tutorials — DocuForge',
+    description:
+      'Comprehensive guides on image compression techniques, format comparisons, secure PDF management, and web performance optimization.',
+    url: getAbsoluteUrl('guides'),
+    images: [SITE_CONFIG.defaultOgImage]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Guides & Tutorials — DocuForge',
+    description:
+      'Comprehensive guides on image compression techniques, format comparisons, secure PDF management, and web performance optimization.',
+    images: [SITE_CONFIG.defaultOgImage]
   }
 };
 

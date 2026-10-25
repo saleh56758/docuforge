@@ -1,12 +1,29 @@
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { getAbsoluteUrl, getSiteUrl, SITE_CONFIG } from '@/utils/siteConfig';
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   title: 'Privacy Policy — DocuForge',
   description:
     'Our comprehensive privacy policy explains why your files never leave your computer and how we handle cookies, analytics, and advertising.',
   alternates: {
-    canonical: 'https://docuforge.app/privacy'
+    canonical: getAbsoluteUrl('privacy')
+  },
+  openGraph: {
+    title: 'Privacy Policy — DocuForge',
+    description:
+      'Our comprehensive privacy policy explains why your files never leave your computer and how we handle cookies, analytics, and advertising.',
+    url: getAbsoluteUrl('privacy'),
+    images: [SITE_CONFIG.defaultOgImage]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy — DocuForge',
+    description:
+      'Our comprehensive privacy policy explains why your files never leave your computer and how we handle cookies, analytics, and advertising.',
+    images: [SITE_CONFIG.defaultOgImage]
   }
 };
 
@@ -27,7 +44,7 @@ export default function PrivacyPage() {
       <div className="prose">
         <h2>1. Fundamental Privacy Principle: Client-Side Processing</h2>
         <p>
-          At DocuForge (accessible from <code>https://docuforge.app</code>), the privacy and security of our visitors is our core technical objective. The fundamental architectural principle of DocuForge is simple: <strong>your files are never uploaded to our servers</strong>.
+          At DocuForge (accessible from <code>{siteUrl}</code>), the privacy and security of our visitors is our core technical objective. The fundamental architectural principle of DocuForge is simple: <strong>your files are never uploaded to our servers</strong>.
         </p>
         <p>
           All image conversions, compressions, crops, and PDF modifications (such as merging, rotating, and splitting) are performed locally inside your device&apos;s web browser using client-side JavaScript, WebAssembly, and HTML5 Canvas APIs.

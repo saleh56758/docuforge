@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, Layers } from 'lucide-react';
-import { PDFDocument } from 'pdf-lib';
 import { formatBytes, downloadBlob, readFileAsArrayBuffer, replaceFileExtension } from '@/utils/fileHelpers';
 
 export default function SplitPdf() {
@@ -23,6 +22,7 @@ export default function SplitPdf() {
     setError(null);
     setSuccessInfo(null);
     try {
+      const { PDFDocument } = await import('pdf-lib');
       const buf = await readFileAsArrayBuffer(selectedFile);
       const pdfDoc = await PDFDocument.load(buf, { ignoreEncryption: true });
       const pages = pdfDoc.getPageCount();
@@ -76,6 +76,7 @@ export default function SplitPdf() {
     setSuccessInfo(null);
 
     try {
+      const { PDFDocument } = await import('pdf-lib');
       const pageIndices = parsePageRanges(rangeInput, totalPages);
       const srcDoc = await PDFDocument.load(buffer, { ignoreEncryption: true });
       const newDoc = await PDFDocument.create();
@@ -142,7 +143,7 @@ export default function SplitPdf() {
           <div className="dropzone-icon" style={{ color: 'var(--color-pdf-tool)' }}>
             <Upload size={28} />
           </div>
-          <h3 className="dropzone-title">Upload a PDF to extract pages</h3>
+          <h2 className="dropzone-title">Upload a PDF to extract pages</h2>
           <p className="dropzone-subtitle">Extract single pages or custom ranges (e.g. 1-3, 5)</p>
           <button type="button" className="dropzone-btn" style={{ backgroundColor: 'var(--color-pdf-tool)' }}>
             Choose PDF Document

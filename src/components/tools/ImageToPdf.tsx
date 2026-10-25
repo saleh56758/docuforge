@@ -2,7 +2,6 @@
 
 import React, { useState, useRef } from 'react';
 import { Upload, Download, ArrowUp, ArrowDown, Trash2, FilePlus, AlertCircle, Plus } from 'lucide-react';
-import { PDFDocument } from 'pdf-lib';
 import { formatBytes, downloadBlob, readFileAsArrayBuffer } from '@/utils/fileHelpers';
 
 interface ImageItem {
@@ -67,6 +66,7 @@ export default function ImageToPdf() {
     setError(null);
 
     try {
+      const { PDFDocument } = await import('pdf-lib');
       const pdfDoc = await PDFDocument.create();
 
       // Standard page sizes in points (72 points = 1 inch)
@@ -213,7 +213,7 @@ export default function ImageToPdf() {
           <div className="dropzone-icon" style={{ color: 'var(--color-pdf-tool)' }}>
             <FilePlus size={28} />
           </div>
-          <h3 className="dropzone-title">Upload JPG, PNG or WebP images to convert to PDF</h3>
+          <h2 className="dropzone-title">Upload JPG, PNG or WebP images to convert to PDF</h2>
           <p className="dropzone-subtitle">Select multiple photos, receipts, or document scans</p>
           <button type="button" className="dropzone-btn" style={{ backgroundColor: 'var(--color-pdf-tool)' }}>
             Select Images

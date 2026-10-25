@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Zap, Lock, Cpu, BookOpen, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Zap, Lock, Cpu, BookOpen, ArrowRight, Image as ImageIcon, FileText } from 'lucide-react';
 import { TOOLS } from '@/data/tools';
 import { GUIDES } from '@/data/guides';
 import HomeDiscovery from '@/components/HomeDiscovery';
+import ToolCard from '@/components/ToolCard';
 import FaqSection from '@/components/FaqSection';
 import AdPlaceholder from '@/components/AdPlaceholder';
 
@@ -31,12 +32,15 @@ const HOMEPAGE_FAQS = [
 ];
 
 export default function HomePage() {
+  const imageTools = TOOLS.filter((t) => t.category === 'image');
+  const pdfTools = TOOLS.filter((t) => t.category === 'pdf');
+
   return (
     <div className="container">
       {/* Hero Section */}
       <section className="hero-section" aria-labelledby="hero-title">
         <div className="hero-badge">
-          <ShieldCheck size={14} /> 100% Private Client-Side Processing
+          <ShieldCheck size={14} aria-hidden="true" /> 100% Private Client-Side Processing
         </div>
         <h1 id="hero-title" className="hero-title">
           Fast, Free & Private Image and PDF Utilities
@@ -45,6 +49,8 @@ export default function HomePage() {
           Professional file tools that run directly in your web browser. No cloud uploads, no account required, and zero waiting in queues.
         </p>
 
+        <h2 className="hero-discovery-heading">Explore image and PDF tools</h2>
+
         {/* Live Search and Filter Component */}
         <HomeDiscovery tools={TOOLS} />
       </section>
@@ -52,17 +58,57 @@ export default function HomePage() {
       {/* Privacy Guarantee Banner */}
       <section className="privacy-banner" aria-label="Privacy Guarantee">
         <div className="privacy-banner-icon">
-          <Lock size={26} />
+          <Lock size={26} aria-hidden="true" />
         </div>
         <div className="privacy-banner-content">
-          <h3>Your Files Never Leave Your Device</h3>
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.25rem' }}>
+            Your Files Never Leave Your Device
+          </h2>
           <p>
             Unlike traditional file conversion websites that upload your personal documents to remote servers, DocuForge executes all transformations locally within your browser sandbox. Your photos, contracts, and financial records remain strictly confidential.
           </p>
         </div>
       </section>
 
+      {/* Image Utilities Category Anchor Section */}
+      <section id="image-tools" className="seo-content-section" style={{ scrollMarginTop: '80px' }}>
+        <div className="section-heading-wrapper">
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', color: 'var(--color-image-tool)', fontSize: '0.8125rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>
+            <ImageIcon size={15} aria-hidden="true" /> Image Utilities
+          </div>
+          <h2 className="section-heading">Image Optimization & Format Utilities</h2>
+          <p className="section-subheading">
+            Hardware-accelerated image compression, cropping, precision resizing, and modern WebP conversions.
+          </p>
+        </div>
+
+        <div className="tool-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+          {imageTools.map((tool) => (
+            <ToolCard key={tool.id} tool={tool} />
+          ))}
+        </div>
+      </section>
+
       <AdPlaceholder slotId="home-top-banner" />
+
+      {/* PDF Utilities Category Anchor Section */}
+      <section id="pdf-tools" className="seo-content-section" style={{ scrollMarginTop: '80px' }}>
+        <div className="section-heading-wrapper">
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', color: 'var(--color-pdf-tool)', fontSize: '0.8125rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.25rem' }}>
+            <FileText size={15} aria-hidden="true" /> PDF Utilities
+          </div>
+          <h2 className="section-heading">PDF Assembly & Structural Utilities</h2>
+          <p className="section-subheading">
+            Combine documents, extract custom page ranges, rotate orientations, and optimize PDF streams with 100% data confidentiality.
+          </p>
+        </div>
+
+        <div className="tool-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+          {pdfTools.map((tool) => (
+            <ToolCard key={tool.id} tool={tool} />
+          ))}
+        </div>
+      </section>
 
       {/* Why Choose DocuForge Section */}
       <section className="seo-content-section" style={{ marginTop: '2rem' }}>
@@ -76,7 +122,7 @@ export default function HomePage() {
         <div className="steps-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
           <div className="step-card">
             <div className="step-number" style={{ background: 'var(--color-image-tool-light)', color: 'var(--color-image-tool)' }}>
-              <Zap size={16} />
+              <Zap size={16} aria-hidden="true" />
             </div>
             <h3 className="step-title">Instant Performance</h3>
             <p className="step-text">
@@ -86,7 +132,7 @@ export default function HomePage() {
 
           <div className="step-card">
             <div className="step-number" style={{ background: 'var(--color-success-light)', color: 'var(--color-success)' }}>
-              <ShieldCheck size={16} />
+              <ShieldCheck size={16} aria-hidden="true" />
             </div>
             <h3 className="step-title">Zero Data Retention</h3>
             <p className="step-text">
@@ -96,7 +142,7 @@ export default function HomePage() {
 
           <div className="step-card">
             <div className="step-number" style={{ background: 'var(--color-pdf-tool-light)', color: 'var(--color-pdf-tool)' }}>
-              <Cpu size={16} />
+              <Cpu size={16} aria-hidden="true" />
             </div>
             <h3 className="step-title">Full Document Fidelity</h3>
             <p className="step-text">
@@ -118,7 +164,7 @@ export default function HomePage() {
             </p>
           </div>
           <Link href="/guides" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
-            <BookOpen size={15} /> View All Guides <ArrowRight size={14} />
+            <BookOpen size={15} aria-hidden="true" /> View All Guides <ArrowRight size={14} aria-hidden="true" />
           </Link>
         </div>
 
@@ -141,7 +187,7 @@ export default function HomePage() {
               </p>
               <div className="tool-card-footer">
                 <span>Read Tutorial</span>
-                <ArrowRight size={14} />
+                <ArrowRight size={14} aria-hidden="true" />
               </div>
             </Link>
           ))}

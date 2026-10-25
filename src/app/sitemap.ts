@@ -1,15 +1,16 @@
 import { MetadataRoute } from 'next';
 import { TOOLS } from '@/data/tools';
 import { GUIDES } from '@/data/guides';
+import { getSiteUrl } from '@/utils/siteConfig';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://docuforge.app';
+  const baseUrl = getSiteUrl();
   const currentDate = new Date().toISOString();
 
   // Core static pages
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/`,
+      url: baseUrl,
       lastModified: currentDate,
       changeFrequency: 'daily',
       priority: 1.0

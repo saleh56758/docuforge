@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ChevronRight, Home } from 'lucide-react';
+import { getSiteUrl } from '@/utils/siteConfig';
 
 export interface BreadcrumbItem {
   label: string;
@@ -12,6 +13,8 @@ interface BreadcrumbsProps {
 }
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+  const siteUrl = getSiteUrl();
+
   // Construct schema.org BreadcrumbList JSON-LD
   const breadcrumbListSchema = {
     '@context': 'https://schema.org',
@@ -21,13 +24,13 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://docuforge.app/'
+        item: `${siteUrl}/`
       },
       ...items.map((item, index) => ({
         '@type': 'ListItem',
         position: index + 2,
         name: item.label,
-        ...(item.href ? { item: `https://docuforge.app${item.href}` } : {})
+        ...(item.href ? { item: `${siteUrl}${item.href}` } : {})
       }))
     ]
   };
@@ -40,12 +43,12 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
       />
       <nav aria-label="Breadcrumb" className="breadcrumbs">
         <Link href="/" aria-label="Home" style={{ display: 'inline-flex', alignItems: 'center' }}>
-          <Home size={14} style={{ marginRight: '0.25rem' }} />
+          <Home size={14} style={{ marginRight: '0.25rem' }} aria-hidden="true" />
           <span>Home</span>
         </Link>
         {items.map((item, idx) => (
           <React.Fragment key={idx}>
-            <span className="breadcrumb-separator">
+            <span className="breadcrumb-separator" aria-hidden="true">
               <ChevronRight size={13} />
             </span>
             {item.href && idx < items.length - 1 ? (

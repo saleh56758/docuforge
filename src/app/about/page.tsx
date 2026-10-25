@@ -2,12 +2,20 @@ import { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { ShieldCheck, Cpu, Zap, Lock } from 'lucide-react';
 
+import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
+
 export const metadata: Metadata = {
   title: 'About DocuForge — Free, Private Online Utilities',
   description:
     'Learn about the mission and architecture of DocuForge: high-speed image and PDF processing running 100% inside your browser sandbox.',
   alternates: {
-    canonical: 'https://docuforge.app/about'
+    canonical: getAbsoluteUrl('about')
+  },
+  openGraph: {
+    title: 'About DocuForge — Free, Private Online Utilities',
+    description: 'Learn about the mission and architecture of DocuForge: high-speed image and PDF processing running 100% inside your browser sandbox.',
+    url: getAbsoluteUrl('about'),
+    images: [SITE_CONFIG.defaultOgImage]
   }
 };
 

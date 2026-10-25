@@ -1,8 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { ToolMetadata } from '@/types';
 import { TOOLS } from '@/data/tools';
+import { GUIDES } from '@/data/guides';
+import { getAbsoluteUrl } from '@/utils/siteConfig';
 import Breadcrumbs from './Breadcrumbs';
 import HowToSection from './HowToSection';
 import FaqSection from './FaqSection';
@@ -14,19 +16,48 @@ interface ToolPageContainerProps {
   children: React.ReactNode;
 }
 
+const relatedGuideSlugsByTool: Record<string, string[]> = {
+  'image-compressor': [
+    'how-to-compress-images-without-losing-quality',
+    'jpg-vs-png-vs-webp-comparison'
+  ],
+  'image-resizer': [
+    'how-to-compress-images-without-losing-quality',
+    'jpg-vs-png-vs-webp-comparison'
+  ],
+  'image-cropper': ['jpg-vs-png-vs-webp-comparison'],
+  'jpg-to-webp': [
+    'jpg-vs-png-vs-webp-comparison',
+    'how-to-compress-images-without-losing-quality'
+  ],
+  'webp-to-jpg': ['jpg-vs-png-vs-webp-comparison'],
+  'png-to-jpg': ['jpg-vs-png-vs-webp-comparison'],
+  'image-converter': ['jpg-vs-png-vs-webp-comparison'],
+  'merge-pdf': ['how-to-merge-pdf-files-securely'],
+  'split-pdf': ['how-to-merge-pdf-files-securely'],
+  'rotate-pdf': ['how-to-merge-pdf-files-securely'],
+  'compress-pdf': ['how-to-merge-pdf-files-securely'],
+  'image-to-pdf': ['how-to-convert-images-to-pdf']
+};
+
 export default function ToolPageContainer({ tool, children }: ToolPageContainerProps) {
   const isImage = tool.category === 'image';
   const related = TOOLS.filter((t) => tool.relatedTools.includes(t.slug));
+  const relatedGuides = GUIDES.filter((guide) =>
+    (relatedGuideSlugsByTool[tool.slug] ?? []).includes(guide.slug)
+  );
+  const canonicalUrl = getAbsoluteUrl(tool.slug);
 
   const webAppSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: tool.title,
-    url: `https://docuforge.app/${tool.slug}`,
+    url: canonicalUrl,
     description: tool.seoDescription,
     applicationCategory: 'MultimediaApplication',
-    operatingSystem: 'Any',
-    browserRequirements: 'Requires JavaScript. Requires HTML5.',
+    operatingSystem: 'All',
+    browserRequirements: 'Requires JavaScript. Requires HTML5 Canvas support.',
+    featureList: tool.features.join(', '),
     offers: {
       '@type': 'Offer',
       price: '0',
@@ -57,7 +88,7 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
             </span>
             {tool.badge && <span className="tool-card-badge">{tool.badge}</span>}
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: 'var(--color-success)', fontWeight: 600 }}>
-              <ShieldCheck size={14} /> Client-Side Execution
+              <ShieldCheck size={14} aria-hidden="true" /> Client-Side Execution
             </span>
           </div>
 
@@ -87,7 +118,7 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
           {tool.features.map((feature, idx) => (
             <li key={idx} className="feature-item">
               <span className="feature-check">
-                <CheckCircle2 size={18} />
+                <CheckCircle2 size={18} aria-hidden="true" />
               </span>
               <span>{feature}</span>
             </li>
@@ -113,6 +144,32 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
 
       {/* Frequently Asked Questions */}
       <FaqSection title={`${tool.title} — Frequently Asked Questions`} faqs={tool.faqs} />
+
+      {/* Contextual guides */}
+      {relatedGuides.length > 0 && (
+        <section className="seo-content-section" style={{ marginTop: '3rem' }} aria-labelledby="related-guides-heading">
+          <div className="section-heading-wrapper">
+            <h2 id="related-guides-heading" className="section-heading">Related Guides</h2>
+            <p className="section-subheading">
+              Practical background and best practices for getting the most from this tool.
+            </p>
+          </div>
+          <div className="tool-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+            {relatedGuides.map((guide) => (
+              <Link
+                key={guide.slug}
+                href={`/guides/${guide.slug}`}
+                className="tool-card"
+                style={{ padding: '1.25rem' }}
+              >
+                <h3 className="tool-card-title" style={{ fontSize: '1rem' }}>{guide.title}</h3>
+                <p className="tool-card-desc" style={{ fontSize: '0.875rem' }}>{guide.description}</p>
+                <span className="tool-card-footer">Read the guide</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Related Utilities */}
       {related.length > 0 && (

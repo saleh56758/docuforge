@@ -126,7 +126,7 @@ export default function PngToJpg() {
           <div className="dropzone-icon">
             <Upload size={28} />
           </div>
-          <h3 className="dropzone-title">Select PNG image to convert to JPG</h3>
+          <h2 className="dropzone-title">Select PNG image to convert to JPG</h2>
           <p className="dropzone-subtitle">Dramatically reduce PNG file size for web and email</p>
           <button type="button" className="dropzone-btn">
             Browse PNG Image
@@ -196,7 +196,11 @@ export default function PngToJpg() {
           {previewUrl && (
             <div className="preview-container">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={previewUrl} alt="Preview" className="preview-img" />
+              <img
+                src={previewUrl}
+                alt={file ? `JPG preview of ${file.name}` : 'Converted JPG image preview'}
+                className="preview-img"
+              />
             </div>
           )}
 

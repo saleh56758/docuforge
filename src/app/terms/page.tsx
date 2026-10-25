@@ -1,11 +1,26 @@
 import { Metadata } from 'next';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import { getAbsoluteUrl, getSiteUrl, SITE_CONFIG } from '@/utils/siteConfig';
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   title: 'Terms of Service — DocuForge',
   description: 'Terms of Service governing the use of DocuForge free online utilities.',
   alternates: {
-    canonical: 'https://docuforge.app/terms'
+    canonical: getAbsoluteUrl('terms')
+  },
+  openGraph: {
+    title: 'Terms of Service — DocuForge',
+    description: 'Terms of Service governing the use of DocuForge free online utilities.',
+    url: getAbsoluteUrl('terms'),
+    images: [SITE_CONFIG.defaultOgImage]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service — DocuForge',
+    description: 'Terms of Service governing the use of DocuForge free online utilities.',
+    images: [SITE_CONFIG.defaultOgImage]
   }
 };
 
@@ -26,7 +41,7 @@ export default function TermsPage() {
       <div className="prose">
         <h2>1. Acceptance of Terms</h2>
         <p>
-          By accessing and using DocuForge (<code>https://docuforge.app</code>), you agree to be bound by these Terms of Service and all applicable local, national, and international laws. If you do not agree with any of these terms, you are prohibited from using this website.
+          By accessing and using DocuForge (<code>{siteUrl}</code>), you agree to be bound by these Terms of Service and all applicable local, national, and international laws. If you do not agree with any of these terms, you are prohibited from using this website.
         </p>
 
         <h2>2. Permitted Use</h2>
