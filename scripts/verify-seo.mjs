@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 const origin = (process.env.SEO_TEST_ORIGIN || 'http://127.0.0.1:3000').trim().replace(/\/$/, '');
-const siteOrigin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://docuforge.app').trim().replace(/\/$/, '');
+const siteOrigin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://docuforge.pages.dev').trim().replace(/\/$/, '');
 
 const toolRoutes = [
   '/image-compressor',

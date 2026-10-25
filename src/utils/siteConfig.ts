@@ -6,7 +6,7 @@
  */
 
 export function getSiteUrl(): string {
-  let url = process.env.NEXT_PUBLIC_SITE_URL || 'https://docuforge.app';
+  let url = process.env.NEXT_PUBLIC_SITE_URL || 'https://docuforge.pages.dev';
   // Strip trailing slashes to prevent duplicate canonical variations
   if (url.endsWith('/')) {
     url = url.slice(0, -1);
