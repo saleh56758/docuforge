@@ -14,7 +14,7 @@ import { Send, CheckCircle2, AlertCircle, Loader2, Mail } from 'lucide-react';
  * ============================================================================
  */
 export const WEB3FORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? '';
+  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() || '8588af69-11a3-44b7-bb0d-91b1db902039';
 
 export const CONTACT_EMAIL = 'hassaansaleh56@gmail.com';
 
