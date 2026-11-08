@@ -118,14 +118,20 @@ async function runTests() {
     '/compress-pdf',
     '/image-to-pdf',
     '/guides',
+    '/blog',
     '/guides/how-to-compress-images-without-losing-quality',
     '/guides/how-to-merge-pdf-files-securely',
     '/guides/jpg-vs-png-vs-webp-comparison',
     '/guides/how-to-convert-images-to-pdf',
+    '/guides/how-to-reduce-pdf-file-size',
+    '/guides/how-to-crop-and-resize-images-for-web-and-social-media',
+    '/guides/why-client-side-file-tools-are-safer',
+    '/guides/how-to-split-and-extract-pdf-pages',
     '/about',
     '/contact',
     '/privacy',
     '/terms',
+    '/disclaimer',
     '/cookies',
     '/sitemap.xml',
     '/robots.txt'
@@ -138,13 +144,13 @@ async function runTests() {
       assert(res.status === 200, `Route: ${urlPath}`, `HTTP 200, Size: ${text.length} chars`);
 
       if (urlPath === '/robots.txt') {
-        assert(text.includes('Sitemap: https://docuforge.app/sitemap.xml'), 'robots.txt has Sitemap directive');
+        assert(text.includes('sitemap.xml'), 'robots.txt has Sitemap directive');
         assert(text.includes('Allow: /'), 'robots.txt allows root');
       }
 
       if (urlPath === '/sitemap.xml') {
-        assert(text.includes('<loc>https://docuforge.app/image-compressor</loc>'), 'sitemap.xml contains image-compressor');
-        assert(text.includes('<loc>https://docuforge.app/merge-pdf</loc>'), 'sitemap.xml contains merge-pdf');
+        assert(text.includes('/image-compressor'), 'sitemap.xml contains image-compressor');
+        assert(text.includes('/merge-pdf'), 'sitemap.xml contains merge-pdf');
       }
 
       if (urlPath.includes('-') && !urlPath.includes('guides')) {

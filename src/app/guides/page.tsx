@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { BookOpen, ArrowRight, Clock, Calendar } from 'lucide-react';
+import { BookOpen, ArrowRight, Clock } from 'lucide-react';
 import { GUIDES } from '@/data/guides';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
@@ -8,7 +8,7 @@ import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 export const metadata: Metadata = {
   title: 'Guides & Tutorials — DocuForge',
   description:
-    'Comprehensive guides on image compression techniques, format comparisons, secure PDF management, and web performance optimization.',
+    'Practical guides to image formats, image compression, PDF file sizes, browser-based file processing, and working with PDF documents.',
   alternates: {
     canonical: getAbsoluteUrl('guides')
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'Guides & Tutorials — DocuForge',
     description:
-      'Comprehensive guides on image compression techniques, format comparisons, secure PDF management, and web performance optimization.',
+      'Practical guides to image formats, image compression, PDF file sizes, browser-based file processing, and working with PDF documents.',
     url: getAbsoluteUrl('guides'),
     images: [SITE_CONFIG.defaultOgImage]
   },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Guides & Tutorials — DocuForge',
     description:
-      'Comprehensive guides on image compression techniques, format comparisons, secure PDF management, and web performance optimization.',
+      'Practical guides to image formats, image compression, PDF file sizes, browser-based file processing, and working with PDF documents.',
     images: [SITE_CONFIG.defaultOgImage]
   }
 };
@@ -42,7 +42,7 @@ export default function GuidesIndexPage() {
           Guides & Technical Tutorials
         </h1>
         <p className="tool-page-subtitle">
-          In-depth articles written by developers and technical SEO specialists to help you master digital formats, file optimization, and web performance.
+          Practical articles about digital image formats, image compression, PDF documents, and browser-based file processing.
         </p>
       </header>
 
@@ -57,10 +57,6 @@ export default function GuidesIndexPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
                 <Clock size={13} /> {guide.readingTime}
-              </span>
-              <span>•</span>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-                <Calendar size={13} /> {guide.publishedDate}
               </span>
             </div>
 

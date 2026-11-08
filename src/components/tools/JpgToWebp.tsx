@@ -122,7 +122,7 @@ export default function JpgToWebp() {
             <Upload size={28} />
           </div>
           <h2 className="dropzone-title">Select JPG file to convert to WebP</h2>
-          <p className="dropzone-subtitle">Drop .jpg or .jpeg images up to 30 MB</p>
+          <p className="dropzone-subtitle">Drop a JPG or JPEG image to convert</p>
           <button type="button" className="dropzone-btn">
             Browse JPG Image
           </button>
@@ -170,7 +170,7 @@ export default function JpgToWebp() {
                 className="control-slider"
               />
               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                WebP achieves smaller file size than JPG at identical visual clarity.
+                File size and appearance depend on the source image and quality setting; compare the result.
               </span>
             </div>
           </div>

@@ -17,7 +17,7 @@ export function GET() {
     `# ${SITE_CONFIG.name}`,
     `> ${SITE_CONFIG.tagline}`,
     '',
-    'DocuForge is a web-based utility platform for client-side image optimization and PDF manipulation. All file operations run in the visitor\'s browser. Files are not uploaded to or stored on DocuForge servers.',
+    'DocuForge is a web-based utility platform for image and PDF processing. The inspected tool-processing code runs in the browser and does not send selected file contents to a DocuForge upload endpoint. This does not describe unrelated website or third-party requests.',
     '',
     '## Image Tools',
     ...imageTools.map((tool) => markdownLink(`/${tool.slug}`, tool.title, tool.shortDescription)),

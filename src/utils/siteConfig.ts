@@ -26,9 +26,10 @@ export function getAbsoluteUrl(path: string = ''): string {
 
 export const SITE_CONFIG = {
   name: 'DocuForge',
-  tagline: 'Free, Fast & Private Online Image and PDF Utilities',
+  tagline: 'Free Online Image and PDF Utilities',
   description:
-    'Free online image compressor, resizer, cropper, format converter, and PDF tools (merge, split, rotate, compress, image-to-pdf). 100% private client-side processing with zero server uploads.',
+    'Free online image and PDF tools to compress, resize, crop, convert, merge, split, rotate, and optimize files in your browser.',
+  adsEnabled: false,
   defaultOgImage: '/og-image.jpg',
   // Kept here so the static Cloudflare Pages build always emits the Search
   // Console meta tag. The environment variable may override it if ownership

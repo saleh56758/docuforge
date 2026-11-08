@@ -127,7 +127,7 @@ export default function WebpToJpg() {
             <Upload size={28} />
           </div>
           <h2 className="dropzone-title">Select WebP image to convert to JPG</h2>
-          <p className="dropzone-subtitle">Convert modern WebP to universal JPEG for any device</p>
+          <p className="dropzone-subtitle">Convert WebP images to JPEG format</p>
           <button type="button" className="dropzone-btn">
             Browse WebP Image
           </button>

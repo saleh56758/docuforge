@@ -22,10 +22,20 @@ export default function ImageCropper() {
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const objectUrlRef = useRef<string | null>(null);
   const isDragging = useRef<boolean>(false);
   const dragHandle = useRef<string | null>(null);
   const startPos = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const startBox = useRef<CropBox>({ x: 0, y: 0, width: 0, height: 0 });
+
+  useEffect(() => {
+    return () => {
+      if (objectUrlRef.current) {
+        URL.revokeObjectURL(objectUrlRef.current);
+        objectUrlRef.current = null;
+      }
+    };
+  }, []);
 
   const handleFile = (selectedFile: File) => {
     if (!selectedFile.type.startsWith('image/')) {
@@ -35,10 +45,17 @@ export default function ImageCropper() {
     setError(null);
     setFile(selectedFile);
 
+    if (objectUrlRef.current) {
+      URL.revokeObjectURL(objectUrlRef.current);
+      objectUrlRef.current = null;
+    }
+
     const objectUrl = URL.createObjectURL(selectedFile);
+    objectUrlRef.current = objectUrl;
     const img = new Image();
     img.src = objectUrl;
     img.onload = () => {
+      if (objectUrlRef.current !== objectUrl) return;
       setImgElement(img);
       // Initialize crop box to 80% center
       const initialWidth = Math.round(img.naturalWidth * 0.8);
@@ -46,6 +63,14 @@ export default function ImageCropper() {
       const initialX = Math.round((img.naturalWidth - initialWidth) / 2);
       const initialY = Math.round((img.naturalHeight - initialHeight) / 2);
       setCropBox({ x: initialX, y: initialY, width: initialWidth, height: initialHeight });
+      URL.revokeObjectURL(objectUrl);
+      objectUrlRef.current = null;
+    };
+    img.onerror = () => {
+      if (objectUrlRef.current !== objectUrl) return;
+      URL.revokeObjectURL(objectUrl);
+      objectUrlRef.current = null;
+      setError('The selected image could not be loaded.');
     };
   };
 
@@ -295,6 +320,10 @@ export default function ImageCropper() {
   };
 
   const handleReset = () => {
+    if (objectUrlRef.current) {
+      URL.revokeObjectURL(objectUrlRef.current);
+      objectUrlRef.current = null;
+    }
     setFile(null);
     setImgElement(null);
     setPreviewBlob(null);
@@ -333,7 +362,7 @@ export default function ImageCropper() {
             <Upload size={28} />
           </div>
           <h2 className="dropzone-title">Upload photo to crop</h2>
-          <p className="dropzone-subtitle">Supports JPG, PNG, and WebP up to 25 MB</p>
+          <p className="dropzone-subtitle">Supports JPG, PNG, and WebP</p>
           <button type="button" className="dropzone-btn">
             Browse Image
           </button>

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, Minimize } from 'lucide-react';
-import { formatBytes, calculateSavings, downloadBlob, readFileAsArrayBuffer, replaceFileExtension } from '@/utils/fileHelpers';
+import { formatBytes, downloadBlob, readFileAsArrayBuffer, replaceFileExtension } from '@/utils/fileHelpers';
 
 export default function CompressPdf() {
   const [file, setFile] = useState<File | null>(null);
@@ -41,14 +41,14 @@ export default function CompressPdf() {
     if (!file || !buffer) return;
     setIsProcessing(true);
     setError(null);
-    setStatusMsg('Analyzing document structure and stripping orphaned streams...');
+    setStatusMsg('Rebuilding the PDF and preparing object streams...');
 
     try {
       const { PDFDocument } = await import('pdf-lib');
       // Load source document
       const srcDoc = await PDFDocument.load(buffer, { ignoreEncryption: true });
 
-      // Create clean destination document to discard dead object trees and old xref tables
+      // Rebuild the document from copied pages before saving with object streams.
       const newDoc = await PDFDocument.create();
       const copiedPages = await newDoc.copyPages(srcDoc, srcDoc.getPageIndices());
       copiedPages.forEach((page) => newDoc.addPage(page));
@@ -89,7 +89,9 @@ export default function CompressPdf() {
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  const savings = file ? calculateSavings(file.size, compressedSize) : 0;
+  const sizeChange = file && file.size > 0
+    ? Math.round(((compressedSize - file.size) / file.size) * 100)
+    : 0;
 
   return (
     <div className="tool-workspace">
@@ -122,7 +124,7 @@ export default function CompressPdf() {
             <Minimize size={28} />
           </div>
           <h2 className="dropzone-title">Upload a PDF to compress and optimize</h2>
-          <p className="dropzone-subtitle">Discards orphaned objects and compresses PDF streams</p>
+          <p className="dropzone-subtitle">Re-saves the PDF with object streams enabled</p>
           <button type="button" className="dropzone-btn" style={{ backgroundColor: 'var(--color-pdf-tool)' }}>
             Choose PDF Document
           </button>
@@ -156,7 +158,7 @@ export default function CompressPdf() {
           </div>
 
           <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-            <strong>How local PDF optimization works:</strong> DocuForge reconstructs the PDF cross-reference table, strips historical revision bloat, and packs objects into modern binary object streams. Documents with unneeded revision data will see significant size reductions while preserving 100% of text and vector quality.
+            <strong>How PDF optimization works:</strong> The tool rebuilds the document from copied pages and saves it with object streams enabled. File-size results vary by document, and some PDF features may not be retained; review the output before using it.
           </div>
 
           {!compressedBlob ? (
@@ -179,20 +181,24 @@ export default function CompressPdf() {
                   <div className="stat-value">{formatBytes(file.size)}</div>
                 </div>
                 <div className="stat-box">
-                  <div className="stat-label">Optimized Size</div>
+                  <div className="stat-label">Output Size</div>
                   <div className="stat-value">{formatBytes(compressedSize)}</div>
                 </div>
                 <div className="stat-box">
-                  <div className="stat-label">Byte Difference</div>
+                  <div className="stat-label">Size Change</div>
                   <div className="stat-value is-savings">
-                    {savings > 0 ? `-${savings}%` : 'Already Optimized'}
+                    {sizeChange < 0
+                      ? `${Math.abs(sizeChange)}% smaller`
+                      : sizeChange > 0
+                        ? `${sizeChange}% larger`
+                        : 'No change'}
                   </div>
                 </div>
               </div>
 
-              {savings <= 0 && (
+              {sizeChange >= 0 && (
                 <p style={{ fontSize: '0.8125rem', color: 'var(--text-muted)', textAlign: 'center' }}>
-                  ℹ️ This PDF was already tightly packed and compressed. Redundant streams and metadata were verified and cleaned.
+                  The re-saved PDF is not smaller than the original. Keep whichever version best meets your needs.
                 </p>
               )}
 
@@ -203,7 +209,7 @@ export default function CompressPdf() {
                   onClick={handleDownload}
                   style={{ flex: 1, minWidth: '200px' }}
                 >
-                  <Download size={18} /> Download Optimized PDF
+                  <Download size={18} /> Download Processed PDF
                 </button>
                 <button type="button" className="btn-ghost" onClick={handleReset}>
                   Reset

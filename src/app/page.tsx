@@ -12,7 +12,7 @@ const HOMEPAGE_FAQS = [
   {
     question: 'How do DocuForge tools work without uploading files?',
     answer:
-      'DocuForge is built using modern Web APIs (HTML5 Canvas, FileReader, WebAssembly, and pdf-lib). When you select a photo or PDF, your browser reads the binary data directly into your local computer memory and runs the algorithms locally. Your confidential documents never leave your device.'
+      'The image and PDF tool components read selected files in your browser and perform their transformations locally using browser APIs and pdf-lib. Their processing code does not send selected file contents to a DocuForge upload endpoint. This does not describe unrelated website or third-party network requests.'
   },
   {
     question: 'Are these tools completely free to use?',
@@ -22,12 +22,12 @@ const HOMEPAGE_FAQS = [
   {
     question: 'Is it safe to process confidential documents like tax forms or contracts?',
     answer:
-      'Yes. Because files are processed entirely client-side inside your browser sandbox and never sent to remote servers, DocuForge complies naturally with stringent privacy requirements including GDPR and HIPAA.'
+      'The file-processing components operate in your browser and do not send selected files to a DocuForge upload endpoint. Consider your organization’s policies and review the privacy policy before processing sensitive documents; this is not a legal or compliance certification.'
   },
   {
     question: 'Do DocuForge tools work on mobile phones and tablets?',
     answer:
-      'Yes. Our interface is fully responsive and compatible with modern mobile browsers including Chrome for Android and Safari on iOS and iPadOS.'
+      'The layout adapts to smaller screens. Tool behavior may vary by browser, device resources, and file, so check the tool with your setup.'
   }
 ];
 
@@ -40,13 +40,13 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="hero-section" aria-labelledby="hero-title">
         <div className="hero-badge">
-          <ShieldCheck size={14} aria-hidden="true" /> 100% Private Client-Side Processing
+          <ShieldCheck size={14} aria-hidden="true" /> Browser-based file processing
         </div>
         <h1 id="hero-title" className="hero-title">
-          Fast, Free & Private Image and PDF Utilities
+          Free Online Image and PDF Tools
         </h1>
         <p className="hero-subtitle">
-          Professional file tools that run directly in your web browser. No cloud uploads, no account required, and zero waiting in queues.
+          Image and PDF tools that process selected files in your browser. No account is required; website and third-party requests are separate from file processing.
         </p>
 
         <h2 className="hero-discovery-heading">Explore image and PDF tools</h2>
@@ -62,11 +62,32 @@ export default function HomePage() {
         </div>
         <div className="privacy-banner-content">
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-            Your Files Never Leave Your Device
+            Files are processed in your browser
           </h2>
           <p>
-            Unlike traditional file conversion websites that upload your personal documents to remote servers, DocuForge executes all transformations locally within your browser sandbox. Your photos, contracts, and financial records remain strictly confidential.
+            The image and PDF tools process selected files locally in your browser. Their file-processing code does not upload those files to a DocuForge endpoint. This statement does not cover ordinary website requests, hosting logs, or third-party services such as the contact form.
           </p>
+        </div>
+      </section>
+
+      {/* Platform Introduction & Overview */}
+      <section className="seo-content-section" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)', padding: '2.25rem', marginBottom: '3.5rem' }}>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--text-primary)' }}>
+          Browser-Based Image and PDF Tools
+        </h2>
+        <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1rem' }}>
+          <strong>DocuForge</strong> provides 12 browser-based tools: seven image utilities and five PDF tools for common file-processing tasks.
+        </p>
+        <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1rem' }}>
+          DocuForge provides image and PDF utilities that process selected files in your browser using browser APIs and <code>pdf-lib</code>. The tool components inspected do not send selected file contents to a DocuForge upload endpoint. Website requests and contact-form submissions are separate; see the <Link href="/privacy">Privacy Policy</Link> for more information.
+        </p>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
+          <Link href="/about" className="btn-ghost" style={{ fontSize: '0.875rem' }}>
+            Learn more about our architecture →
+          </Link>
+          <Link href="/guides" className="btn-ghost" style={{ fontSize: '0.875rem' }}>
+            Explore our technical tutorials →
+          </Link>
         </div>
       </section>
 
@@ -78,7 +99,7 @@ export default function HomePage() {
           </div>
           <h2 className="section-heading">Image Optimization & Format Utilities</h2>
           <p className="section-subheading">
-            Hardware-accelerated image compression, cropping, precision resizing, and modern WebP conversions.
+            Image compression, cropping, resizing, and WebP conversion tools.
           </p>
         </div>
 
@@ -99,7 +120,7 @@ export default function HomePage() {
           </div>
           <h2 className="section-heading">PDF Assembly & Structural Utilities</h2>
           <p className="section-subheading">
-            Combine documents, extract custom page ranges, rotate orientations, and optimize PDF streams with 100% data confidentiality.
+            Combine documents, extract custom page ranges, rotate orientations, and re-save PDF files in your browser.
           </p>
         </div>
 
@@ -115,7 +136,7 @@ export default function HomePage() {
         <div className="section-heading-wrapper" style={{ textAlign: 'center', maxWidth: 650, margin: '0 auto 2.5rem auto' }}>
           <h2 className="section-heading">Engineered for Privacy, Speed & Precision</h2>
           <p className="section-subheading">
-            Built from the ground up for modern web standards, privacy compliance, and instant results.
+            Built around browser-based file processing and practical image and PDF workflows.
           </p>
         </div>
 
@@ -134,9 +155,9 @@ export default function HomePage() {
             <div className="step-number" style={{ background: 'var(--color-success-light)', color: 'var(--color-success)' }}>
               <ShieldCheck size={16} aria-hidden="true" />
             </div>
-            <h3 className="step-title">Zero Data Retention</h3>
+            <h3 className="step-title">Local File Processing</h3>
             <p className="step-text">
-              No databases, no file caches, and no tracking. Once you close your browser tab, memory is cleared instantly.
+              The file-processing components do not send selected file contents to a DocuForge upload endpoint. Browser memory and object URL cleanup are managed by the browser and the individual tool interfaces.
             </p>
           </div>
 

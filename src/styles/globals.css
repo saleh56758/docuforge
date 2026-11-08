@@ -1535,3 +1535,34 @@ button, input, select, textarea {
     font-size: 0.8125rem;
   }
 }
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 1s linear infinite;
+}
+
+/* Ad-Safe Layout Protection & Spacing */
+.ad-slot-container {
+  min-height: 100px;
+  margin: 2.75rem 0;
+  clear: both;
+}
+
+.ad-slot-container.is-rectangle {
+  min-height: 250px;
+}
+
+/* Ensure ample physical separation around interactive tool buttons to prevent accidental clicks */
+.results-card .btn-primary,
+.active-file-header .btn-ghost,
+.dropzone-btn {
+  margin-top: 1rem;
+}

@@ -183,7 +183,7 @@ export default function ImageConverter() {
                 className="control-select"
               >
                 <option value="webp">WebP (Modern, Small File Size)</option>
-                <option value="jpeg">JPG (Universal Compatibility)</option>
+                <option value="jpeg">JPG</option>
                 <option value="png">PNG (Lossless, Transparent)</option>
               </select>
             </div>

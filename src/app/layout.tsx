@@ -9,10 +9,11 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'DocuForge — Free Online Image & PDF Tools (100% Private)',
+    default: 'Free Image and PDF Tools Online | DocuForge',
     template: '%s | DocuForge'
   },
-  description: SITE_CONFIG.description,
+  description:
+    'Free online image and PDF tools to compress, resize, crop, convert, merge, split and optimize files. Process files directly in your browser.',
   keywords: [
     'image compressor',
     'pdf tools',
@@ -45,9 +46,9 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'DocuForge',
-    title: 'DocuForge — Free Online Image & PDF Tools',
+    title: 'Free Image and PDF Tools Online | DocuForge',
     description:
-      'Fast, secure file utilities that process documents directly in your browser. No file uploads, no tracking, 100% private.',
+      'Free online image and PDF tools to compress, resize, crop, convert, merge, split and optimize files. Process files directly in your browser.',
     images: [
       {
         url: SITE_CONFIG.defaultOgImage,
@@ -59,8 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DocuForge — Free Online Image & PDF Tools',
-    description: 'Compress, resize, convert images and merge, split, rotate PDFs locally in your browser.',
+    title: 'Free Image and PDF Tools Online | DocuForge',
+    description:
+      'Free online image and PDF tools to compress, resize, crop, convert, merge, split and optimize files. Process files directly in your browser.',
     images: [SITE_CONFIG.defaultOgImage]
   },
   robots: {
@@ -101,6 +103,34 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+
+        {/*
+          ======================================================================
+          GOOGLE-CERTIFIED CMP (CONSENT MANAGEMENT PLATFORM) INTEGRATION POINT
+          ======================================================================
+          To comply with Google AdSense regulations for the European Economic Area (EEA),
+          United Kingdom, and Switzerland, a certified CMP (IAB TCF v2.2) must be active
+          before personalized advertising cookies are read or set.
+
+          OPTION 1 (Recommended & Easiest):
+            Enable Google's built-in "Privacy & messaging" GDPR consent banner directly
+            in the Google AdSense dashboard (AdSense > Privacy & messaging > GDPR > Create/Publish).
+            When enabled in the dashboard, Google automatically serves and manages the
+            certified consent dialog through the official AdSense script below. No extra code is needed.
+
+          OPTION 2 (External Certified CMP):
+            If you prefer an external IAB-certified CMP (e.g., Cookiebot, Didomi, Quantcast,
+            Termly), place your provider's certified script tag directly BEFORE the AdSense tag:
+            <!-- <script src="https://consent.your-cmp-provider.com/script.js" async></script> -->
+        */}
+
+        {SITE_CONFIG.adsEnabled && (
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+            crossOrigin="anonymous"
+          />
+        )}
       </head>
       <body>
         <Navbar />

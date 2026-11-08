@@ -35,7 +35,7 @@ export default function HowToSection({ toolName, steps }: HowToSectionProps) {
           How to Use {toolName}
         </h2>
         <p className="section-subheading">
-          Follow these quick steps to process your files in seconds.
+          Follow these steps to process your files.
         </p>
       </div>
 

@@ -160,7 +160,7 @@ export default function ImageResizer() {
             <Upload size={28} />
           </div>
           <h2 className="dropzone-title">Select an image to resize</h2>
-          <p className="dropzone-subtitle">Supports JPG, PNG, and WebP up to 30 MB</p>
+          <p className="dropzone-subtitle">Supports JPG, PNG, and WebP</p>
           <button type="button" className="dropzone-btn">
             Browse Image
           </button>

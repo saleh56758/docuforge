@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Layers, Moon, Sun, Menu, X, Image as ImageIcon, FileText, BookOpen, Info } from 'lucide-react';
+import { Layers, Moon, Sun, Menu, X, Image as ImageIcon, FileText, BookOpen, Info, Mail } from 'lucide-react';
 
 export default function Navbar() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -60,6 +60,13 @@ export default function Navbar() {
               <Link href="/about">
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
                   <Info size={15} /> About
+                </span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/contact">
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+                  <Mail size={15} /> Contact
                 </span>
               </Link>
             </li>

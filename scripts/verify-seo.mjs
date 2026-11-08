@@ -23,18 +23,24 @@ const guideRoutes = [
   '/guides/how-to-compress-images-without-losing-quality',
   '/guides/how-to-merge-pdf-files-securely',
   '/guides/jpg-vs-png-vs-webp-comparison',
-  '/guides/how-to-convert-images-to-pdf'
+  '/guides/how-to-convert-images-to-pdf',
+  '/guides/how-to-reduce-pdf-file-size',
+  '/guides/how-to-crop-and-resize-images-for-web-and-social-media',
+  '/guides/why-client-side-file-tools-are-safer',
+  '/guides/how-to-split-and-extract-pdf-pages'
 ];
 
 const indexableRoutes = [
   '/',
   ...toolRoutes,
   '/guides',
+  '/blog',
   ...guideRoutes,
   '/about',
   '/contact',
   '/privacy',
   '/terms',
+  '/disclaimer',
   '/cookies'
 ];
 
@@ -177,6 +183,15 @@ for (const route of indexableRoutes) {
 }
 
 const home = await fetchRoute('/');
+assert.equal(getTitle(home.body), 'Free Image and PDF Tools Online | DocuForge', 'Homepage must use the approved SEO title');
+assert.equal(
+  getMetaContent(home.body, 'name', 'description'),
+  'Free online image and PDF tools to compress, resize, crop, convert, merge, split and optimize files. Process files directly in your browser.',
+  'Homepage must use the approved meta description'
+);
+assert.match(home.body, /<h1\b[^>]*>Free Online Image and PDF Tools<\/h1>/, 'Homepage must use the primary H1');
+assert.doesNotMatch(home.body, /adsbygoogle|googlesyndication|ca-pub-/i, 'AdSense must remain disabled');
+assertions += 4;
 
 for (const href of discoveredInternalLinks) {
   const { response } = await fetchRoute(href);
@@ -189,11 +204,18 @@ assert.equal(sitemapResponse.status, 200, 'sitemap.xml must return HTTP 200');
 assert.match(sitemapResponse.headers.get('content-type') ?? '', /xml/i, 'sitemap.xml must be XML');
 const locations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
 assert.equal(new Set(locations).size, locations.length, 'sitemap.xml must not contain duplicate locations');
+assert.ok(!locations.includes(`${siteOrigin}/ads.txt`), 'Sitemap must not include ads.txt');
 for (const route of indexableRoutes) {
   assert.ok(locations.includes(expectedCanonical(route)), `sitemap.xml is missing ${route}`);
   assertions += 1;
 }
-assertions += 3;
+assertions += 4;
+
+const adsTxtResponse = await fetch(`${origin}/ads.txt`);
+assert.equal(adsTxtResponse.status, 200, 'ads.txt must remain available without an unverified publisher record');
+const adsTxt = await adsTxtResponse.text();
+assert.doesNotMatch(adsTxt, /^\s*google\.com\s*,\s*pub-/im, 'ads.txt must not publish an unverified publisher record');
+assertions += 2;
 
 const { response: robotsResponse, body: robots } = await fetchRoute('/robots.txt');
 assert.equal(robotsResponse.status, 200, 'robots.txt must return HTTP 200');

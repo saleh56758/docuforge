@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, Sliders } from 'lucide-react';
-import { formatBytes, calculateSavings, downloadBlob, replaceFileExtension } from '@/utils/fileHelpers';
+import { formatBytes, downloadBlob, replaceFileExtension } from '@/utils/fileHelpers';
 
 export default function ImageCompressor() {
   const [file, setFile] = useState<File | null>(null);
@@ -14,6 +14,9 @@ export default function ImageCompressor() {
   const [compressedSize, setCompressedSize] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const sizeChange = file && file.size > 0
+    ? Math.round(((compressedSize - file.size) / file.size) * 100)
+    : 0;
 
   const handleFile = (selectedFile: File) => {
     if (!selectedFile.type.startsWith('image/')) {
@@ -246,9 +249,15 @@ export default function ImageCompressor() {
                 </div>
               </div>
               <div className="stat-box">
-                <div className="stat-label">Size Reduction</div>
+                <div className="stat-label">Size Change</div>
                 <div className="stat-value is-savings">
-                  {isProcessing ? '...' : `-${calculateSavings(file.size, compressedSize)}%`}
+                  {isProcessing
+                    ? '...'
+                    : sizeChange < 0
+                      ? `${Math.abs(sizeChange)}% smaller`
+                      : sizeChange > 0
+                        ? `${sizeChange}% larger`
+                        : 'No change'}
                 </div>
               </div>
             </div>

@@ -5,7 +5,7 @@ import { GUIDES, getGuideBySlug } from '@/data/guides';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import AdPlaceholder from '@/components/AdPlaceholder';
 import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
-import { Clock, Calendar, User, ArrowRight } from 'lucide-react';
+import { Clock, User, ArrowRight } from 'lucide-react';
 
 interface Props {
   params: {
@@ -35,7 +35,6 @@ export function generateMetadata({ params }: Props): Metadata {
       title: guide.title,
       description: guide.description,
       url: canonicalUrl,
-      publishedTime: '2026-10-01T00:00:00Z',
       authors: [guide.author],
       images: [
         {
@@ -79,8 +78,6 @@ export default function GuideDetailPage({ params }: Props) {
       }
     },
     image: getAbsoluteUrl('og-image.jpg'),
-    datePublished: '2026-10-01T00:00:00Z',
-    dateModified: '2026-10-24T00:00:00Z',
     mainEntityOfPage: canonicalUrl
   };
 
@@ -106,7 +103,11 @@ export default function GuideDetailPage({ params }: Props) {
     const formatInline = (str: string) => {
       return str
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/`([^`]+)`/g, '<code>$1</code>');
+        .replace(/`([^`]+)`/g, '<code>$1</code>')
+        .replace(
+          /\[([^\]]+)\]\(([^)]+)\)/g,
+          '<a href="$2" style="color: var(--color-primary); text-decoration: underline; font-weight: 600;">$1</a>'
+        );
     };
 
     let inTable = false;
@@ -221,10 +222,6 @@ export default function GuideDetailPage({ params }: Props) {
         <div className="article-meta">
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
             <User size={14} aria-hidden="true" /> {guide.author}
-          </span>
-          <span>•</span>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-            <Calendar size={14} aria-hidden="true" /> {guide.publishedDate}
           </span>
           <span>•</span>
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>

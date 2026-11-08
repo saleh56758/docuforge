@@ -11,13 +11,14 @@ export interface ToolMetadata {
   badge?: string;
   features: string[];
   supportedFormats: string[];
-  maxFileSizeMB: number;
   seoTitle: string;
   seoDescription: string;
   keywords: string[];
   howToSteps: { title: string; text: string }[];
   faqs: { question: string; answer: string }[];
   relatedTools: string[];
+  overview?: string;
+  tips?: string[];
 }
 
 export interface GuideMetadata {
@@ -25,7 +26,6 @@ export interface GuideMetadata {
   title: string;
   description: string;
   readingTime: string;
-  publishedDate: string;
   author: string;
   tags: string[];
   content: string;
