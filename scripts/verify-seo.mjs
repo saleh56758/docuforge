@@ -212,9 +212,13 @@ for (const route of indexableRoutes) {
 assertions += 4;
 
 const adsTxtResponse = await fetch(`${origin}/ads.txt`);
-assert.equal(adsTxtResponse.status, 200, 'ads.txt must remain available without an unverified publisher record');
+assert.equal(adsTxtResponse.status, 200, 'ads.txt must return HTTP 200');
 const adsTxt = await adsTxtResponse.text();
-assert.doesNotMatch(adsTxt, /^\s*google\.com\s*,\s*pub-/im, 'ads.txt must not publish an unverified publisher record');
+assert.equal(
+  adsTxt.trim(),
+  'google.com, pub-9645154391163217, DIRECT, f08c47fec0942fa0',
+  'ads.txt must contain the configured AdSense publisher record'
+);
 assertions += 2;
 
 const { response: robotsResponse, body: robots } = await fetchRoute('/robots.txt');

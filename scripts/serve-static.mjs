@@ -1,4 +1,4 @@
-import { createReadStream } from 'node:fs';
+zimport { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { extname, normalize, resolve } from 'node:path';

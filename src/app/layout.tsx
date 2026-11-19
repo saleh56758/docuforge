@@ -124,13 +124,11 @@ export default function RootLayout({
             <!-- <script src="https://consent.your-cmp-provider.com/script.js" async></script> -->
         */}
 
-        {SITE_CONFIG.adsEnabled && (
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-            crossOrigin="anonymous"
-          />
-        )}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9645154391163217"
+          crossOrigin="anonymous"
+        />
       </head>
       <body>
         <Navbar />
