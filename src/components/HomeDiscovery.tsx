@@ -58,11 +58,10 @@ export default function HomeDiscovery({ tools }: HomeDiscoveryProps) {
           )}
         </div>
 
-        <div className="filter-tabs" role="tablist" aria-label="Tool Categories">
+        <div className="filter-tabs" role="group" aria-label="Filter tools by category">
           <button
             type="button"
-            role="tab"
-            aria-selected={activeCategory === 'all'}
+            aria-pressed={activeCategory === 'all'}
             className={`filter-tab-btn ${activeCategory === 'all' ? 'is-active' : ''}`}
             onClick={() => setActiveCategory('all')}
           >
@@ -70,8 +69,7 @@ export default function HomeDiscovery({ tools }: HomeDiscoveryProps) {
           </button>
           <button
             type="button"
-            role="tab"
-            aria-selected={activeCategory === 'image'}
+            aria-pressed={activeCategory === 'image'}
             className={`filter-tab-btn ${activeCategory === 'image' ? 'is-active' : ''}`}
             onClick={() => setActiveCategory('image')}
           >
@@ -79,8 +77,7 @@ export default function HomeDiscovery({ tools }: HomeDiscoveryProps) {
           </button>
           <button
             type="button"
-            role="tab"
-            aria-selected={activeCategory === 'pdf'}
+            aria-pressed={activeCategory === 'pdf'}
             className={`filter-tab-btn ${activeCategory === 'pdf' ? 'is-active' : ''}`}
             onClick={() => setActiveCategory('pdf')}
           >

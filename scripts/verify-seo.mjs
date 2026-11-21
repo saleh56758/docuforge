@@ -190,7 +190,16 @@ assert.equal(
   'Homepage must use the approved meta description'
 );
 assert.match(home.body, /<h1\b[^>]*>Free Online Image and PDF Tools<\/h1>/, 'Homepage must use the primary H1');
-assert.doesNotMatch(home.body, /adsbygoogle|googlesyndication|ca-pub-/i, 'AdSense must remain disabled');
+assert.match(
+  home.body,
+  /https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-9645154391163217/,
+  'Homepage must include the AdSense verification script'
+);
+assert.doesNotMatch(
+  home.body,
+  /<ins\b[^>]*class=["'][^"']*adsbygoogle/i,
+  'Ad units must remain disabled'
+);
 assertions += 4;
 
 for (const href of discoveredInternalLinks) {

@@ -39,7 +39,7 @@ export default function PrivacyPage() {
           Privacy Policy
         </h1>
         <p className="article-meta" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)' }}>
-          Last Updated &amp; Effective Date: October 2026 • Website: <code>{siteUrl}</code> • Contact: <code>{CONTACT_EMAIL}</code>
+          Last Updated &amp; Effective Date: November 2026 • Website: <code>{siteUrl}</code> • Contact: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </p>
       </header>
 
@@ -97,10 +97,10 @@ export default function PrivacyPage() {
 
         <h2>4. Advertising</h2>
         <p>
-          Advertising placements and the AdSense script are currently disabled in the application. No AdSense publisher declaration is being published while account approval and publisher configuration remain unverified. If advertising is enabled later, this policy and any applicable consent behavior must be reviewed and updated first.
+          The Google AdSense library is loaded for publisher verification. Ad units and advertising placements are disabled in the application. Loading the library is a third-party network request and is separate from displaying an advertisement. This project has not independently verified whether the verification script or hosting configuration stores or reads browser identifiers or cookies; consult Google&apos;s current privacy information and check the deployed browser behavior.
         </p>
         <p>
-          If advertising is activated in the future, third-party providers may process data according to their own policies. Details and opt-out information should be added here only after the actual provider configuration is confirmed.
+          Before enabling ad placements, the operator must review the applicable Google disclosures, consent requirements, and this policy against the actual account and deployment configuration.
         </p>
 
         <h2>5. Web Analytics</h2>
@@ -126,54 +126,33 @@ export default function PrivacyPage() {
 
         <h2>7. Children&apos;s Privacy (COPPA &amp; GDPR-K)</h2>
         <p>
-          DocuForge is a general-audience digital utility website intended for students, professionals, and adults. We do not knowingly collect, solicit, or maintain personal information from children under the age of 13 (or under 16 in certain European jurisdictions), in compliance with the Children&apos;s Online Privacy Protection Act (COPPA).
-        </p>
-        <p>
-          If you are a parent or guardian and believe that your child has provided personal information to us (for example, by sending an email or contact form message), please contact us immediately at <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--color-primary)' }}>{CONTACT_EMAIL}</a>, and we will promptly delete such correspondence from our inbox.
+          DocuForge is a general-audience utility website and is not designed specifically for children. We do not knowingly ask children to provide personal information. If you believe a child has sent us information through email or the contact form, contact us so we can review the request and take appropriate steps.
         </p>
 
-        <h2>8. Privacy Requests</h2>
+        <h2>8. Privacy Requests by Location</h2>
         <p>
-          Applicable privacy rights depend on your location and circumstances. This general information is not legal advice. Contact us to ask about personal information submitted through the contact form.
+          Privacy rights and response requirements depend on your location and circumstances. You can contact us to ask about personal information submitted through the contact form or email. We will review requests under applicable requirements; this policy is not a complete statement of every right or deadline.
         </p>
-        <ul>
-          <li><strong>Right of Access</strong>: You may request confirmation of whether we hold personal communications relating to you.</li>
-          <li><strong>Right to Rectification</strong>: You may request correction of inaccurate contact information.</li>
-          <li><strong>Right to Erasure (&quot;Right to be Forgotten&quot;)</strong>: You may request that we delete any email correspondence you previously sent us.</li>
-          <li><strong>Right to Restriction &amp; Objection</strong>: You may object to the processing of your communication data.</li>
-          <li><strong>Right to Data Portability</strong>: You may request a machine-readable copy of any information you provided to us.</li>
-        </ul>
         <p>
-          <em>Note regarding files</em>: The tool-processing code reviewed does not send selected file contents to a DocuForge upload endpoint. To ask about communications sent through the contact form, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+          Contact-form submissions are sent to Web3Forms for processing when the form is configured. Google receives a request when its AdSense verification library loads. This policy does not determine how those disclosures are classified under any particular privacy law; consult the providers&apos; current privacy information and applicable requirements.
         </p>
 
-        <h2>9. California Privacy Requests</h2>
-        <p>
-          California privacy laws may provide rights regarding personal information. The scope of applicable rights depends on the circumstances; contact us with questions about contact-form information.
-        </p>
-        <ul>
-          <li><strong>Right to Know &amp; Access</strong>: You have the right to request the categories and specific pieces of personal information we have collected about you over the past 12 months.</li>
-          <li><strong>Right to Delete</strong>: You have the right to request deletion of personal information collected from you (e.g., support emails).</li>
-          <li><strong>No Sale or Sharing of Personal Information</strong>: DocuForge does not sell, rent, or share personal data for monetary or other valuable consideration. We do not sell files, names, or email addresses.</li>
-          <li><strong>Right to Non-Discrimination</strong>: We will never discriminate against you (deny services, charge different prices, or provide different quality) for exercising any of your CCPA/CPRA rights.</li>
-        </ul>
-
-        <h2>10. Security Practices</h2>
+        <h2>9. Security Practices</h2>
         <p>
           Use the HTTPS site address when visiting DocuForge. Browser-based file processing means the inspected tool code does not upload selected files to a DocuForge endpoint, but this does not eliminate all security risks associated with devices, browsers, hosting, or third-party services.
         </p>
 
-        <h2>11. External Links &amp; Third-Party Services</h2>
+        <h2>10. External Links &amp; Third-Party Services</h2>
         <p>
           Our website and technical guides may contain hyperlinks to third-party websites or services (such as Mozilla Developer Network, Google Ads Settings, or W3C standards). We do not control and are not responsible for the privacy practices or content of third-party platforms. We encourage you to review their respective privacy policies.
         </p>
 
-        <h2>12. Changes to This Privacy Policy</h2>
+        <h2>11. Changes to This Privacy Policy</h2>
         <p>
-          We may periodically update this Privacy Policy to reflect changes in our tools, technology, operational practices, or legal requirements. Any modifications will be posted directly on this page with an updated &quot;Last Updated&quot; date at the top. We encourage you to review this page periodically to stay informed about how we safeguard your privacy.
+          We may update this Privacy Policy to reflect changes in our tools, technology, operational practices, or legal requirements. Any modifications will be posted on this page with an updated &quot;Last Updated&quot; date at the top. Review it periodically for the current description of our information practices.
         </p>
 
-        <h2>13. Data Controller &amp; Privacy Contact</h2>
+        <h2>12. Data Controller &amp; Privacy Contact</h2>
         <p>
           If you have questions, comments, or wish to exercise your data privacy rights, please reach out to our privacy administrator:
         </p>

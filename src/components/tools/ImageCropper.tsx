@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, Crop as CropIcon } from 'lucide-react';
 import { formatBytes, downloadBlob, replaceFileExtension } from '@/utils/fileHelpers';
+import ImageComparison from '@/components/ImageComparison';
 
 interface CropBox {
   x: number;
@@ -63,8 +64,6 @@ export default function ImageCropper() {
       const initialX = Math.round((img.naturalWidth - initialWidth) / 2);
       const initialY = Math.round((img.naturalHeight - initialHeight) / 2);
       setCropBox({ x: initialX, y: initialY, width: initialWidth, height: initialHeight });
-      URL.revokeObjectURL(objectUrl);
-      objectUrlRef.current = null;
     };
     img.onerror = () => {
       if (objectUrlRef.current !== objectUrl) return;
@@ -196,16 +195,16 @@ export default function ImageCropper() {
       width: newWidth,
       height: newHeight
     });
+    setPreviewBlob(null);
   };
 
-  // Mouse interaction for moving or resizing crop box
-  const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
     if (!canvas || !imgElement) return;
 
     const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const pointerX = e.clientX - rect.left;
+    const pointerY = e.clientY - rect.top;
 
     const scaleX = canvas.width / imgElement.naturalWidth;
     const scaleY = canvas.height / imgElement.naturalHeight;
@@ -218,38 +217,41 @@ export default function ImageCropper() {
     // Check bottom-right corner resize handle
     const cornerSize = 16;
     if (
-      Math.abs(mouseX - (dx + dw)) <= cornerSize &&
-      Math.abs(mouseY - (dy + dh)) <= cornerSize
+      Math.abs(pointerX - (dx + dw)) <= cornerSize &&
+      Math.abs(pointerY - (dy + dh)) <= cornerSize
     ) {
       isDragging.current = true;
       dragHandle.current = 'br';
-      startPos.current = { x: mouseX, y: mouseY };
+      startPos.current = { x: pointerX, y: pointerY };
       startBox.current = { ...cropBox };
+      canvas.setPointerCapture(e.pointerId);
       return;
     }
 
     // Inside box -> drag move
-    if (mouseX >= dx && mouseX <= dx + dw && mouseY >= dy && mouseY <= dy + dh) {
+    if (pointerX >= dx && pointerX <= dx + dw && pointerY >= dy && pointerY <= dy + dh) {
       isDragging.current = true;
       dragHandle.current = 'move';
-      startPos.current = { x: mouseX, y: mouseY };
+      startPos.current = { x: pointerX, y: pointerY };
       startBox.current = { ...cropBox };
+      canvas.setPointerCapture(e.pointerId);
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLCanvasElement>) => {
     if (!isDragging.current || !imgElement || !canvasRef.current) return;
 
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const pointerX = e.clientX - rect.left;
+    const pointerY = e.clientY - rect.top;
 
     const scaleX = canvas.width / imgElement.naturalWidth;
     const scaleY = canvas.height / imgElement.naturalHeight;
 
-    const deltaX = (mouseX - startPos.current.x) / scaleX;
-    const deltaY = (mouseY - startPos.current.y) / scaleY;
+    const deltaX = (pointerX - startPos.current.x) / scaleX;
+    const deltaY = (pointerY - startPos.current.y) / scaleY;
+    setPreviewBlob(null);
 
     if (dragHandle.current === 'move') {
       let nextX = Math.round(startBox.current.x + deltaX);
@@ -279,9 +281,12 @@ export default function ImageCropper() {
     }
   };
 
-  const handleMouseUp = () => {
+  const handlePointerUp = (e: React.PointerEvent<HTMLCanvasElement>) => {
     isDragging.current = false;
     dragHandle.current = null;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
   };
 
   const executeCrop = () => {
@@ -330,6 +335,8 @@ export default function ImageCropper() {
     setError(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
+
+  const originalUrl = objectUrlRef.current;
 
   return (
     <div className="tool-workspace">
@@ -429,10 +436,11 @@ export default function ImageCropper() {
             <canvas
               ref={canvasRef}
               className="crop-canvas"
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerUp}
+              aria-label="Crop selection preview. Move the selection or resize its bottom-right corner."
               style={{ cursor: 'crosshair' }}
             />
           </div>
@@ -446,6 +454,15 @@ export default function ImageCropper() {
               <CropIcon size={18} /> Apply Crop Preview
             </button>
           </div>
+
+          {previewBlob && originalUrl && (
+            <ImageComparison
+              originalUrl={originalUrl}
+              outputBlob={previewBlob}
+              originalName={file.name}
+              outputLabel="Cropped output"
+            />
+          )}
 
           {previewBlob && (
             <div className="results-card">

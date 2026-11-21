@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { ShieldCheck, Cpu, Zap, Lock, Mail, CheckCircle2, Sparkles, Layers } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 
 export const metadata: Metadata = {
@@ -47,34 +47,25 @@ export default function AboutPage() {
       <div className="prose">
         <h2>Our Mission</h2>
         <p>
-          <strong>DocuForge</strong> (hosted at <code>docuforge.pages.dev</code>) provides image and PDF utilities that process selected files in the browser. The inspected tool-processing code does not send selected file contents to a DocuForge upload endpoint.
+          <strong>DocuForge</strong> is a no-account collection of 12 image and PDF tools hosted at <code>docuforge.pages.dev</code>. Each tool is built for a specific file task; for example, the PDF size tool re-saves and compares a PDF but does not downsample its embedded images.
         </p>
         <p>
-          This describes the file-processing code, not every request made by the website, hosting provider, or third-party services. Review the <Link href="/privacy">Privacy Policy</Link> and your organization&apos;s policies before processing sensitive documents.
-        </p>
-        <p>
-          The tools use browser-based processing for the selected image or PDF. Browser and device behavior, as well as requests unrelated to file processing, remain outside this description.
+          Browse the <Link href="/guides">guides</Link> for format and file-handling context, or use the <Link href="/blog">practical workflows</Link> for task sequences.
         </p>
 
         <h2>How Browser-Based File Processing Works</h2>
         <p>
-          The image and PDF tools use browser APIs and JavaScript libraries to process selected files in the browser. The reviewed tool-processing code does not send selected file contents to a DocuForge upload endpoint.
-        </p>
-        <p>
-          This does not mean that no network requests occur while visiting the site. For example, page assets and contact-form submissions are separate from file processing.
+          Image tools use browser image and Canvas APIs; PDF tools use the JavaScript <code>pdf-lib</code> library. The inspected processing code does not send selected file contents to a DocuForge upload endpoint. This describes file processing only, not page requests, hosting logs, contact-form submissions, browser extensions, or other third-party services.
         </p>
         <ul>
           <li>
-            <strong>Image tools</strong>: Tools such as <Link href="/image-compressor">Image Compressor</Link>, <Link href="/image-resizer">Image Resizer</Link>, and <Link href="/image-cropper">Image Cropper</Link> use browser image and Canvas APIs to render and export images.
+            <strong>Image tools</strong>: <Link href="/image-compressor">Image Compressor</Link>, <Link href="/image-resizer">Image Resizer</Link>, and <Link href="/image-cropper">Image Cropper</Link> render and export images. Re-encoding can change file size, quality, or image data; inspect the result.
           </li>
           <li>
-            <strong>PDF tools</strong>: Tools such as <Link href="/merge-pdf">Merge PDF</Link>, <Link href="/split-pdf">Split PDF</Link>, <Link href="/rotate-pdf">Rotate PDF</Link>, <Link href="/compress-pdf">Compress PDF</Link>, and <Link href="/image-to-pdf">Image to PDF</Link> use the JavaScript <code>pdf-lib</code> library in the browser.
+            <strong>PDF tools</strong>: <Link href="/merge-pdf">Merge PDF</Link>, <Link href="/split-pdf">Split PDF</Link>, <Link href="/rotate-pdf">Rotate PDF</Link>, and <Link href="/image-to-pdf">Image to PDF</Link> create or update documents. Review the output for forms, signatures, bookmarks, and other features important to your workflow.
           </li>
           <li>
-            <strong>Scope of the review</strong>: The inspected tool-processing code does not send selected file contents to a DocuForge upload endpoint. This does not cover browser extensions, hosting logs, or unrelated third-party network requests.
-          </li>
-          <li>
-            <strong>Browser memory</strong>: Selected files are read for processing in the browser. Closing a tab should not be treated as a guaranteed secure memory-erasure procedure.
+            <strong>PDF size check</strong>: <Link href="/compress-pdf">PDF Re-save &amp; Size Check</Link> does not downsample embedded images and may produce a larger file.
           </li>
         </ul>
 
@@ -102,7 +93,7 @@ export default function AboutPage() {
                 <Link href="/jpg-to-webp">JPG to WebP</Link>,{' '}
                 <Link href="/webp-to-jpg">WebP to JPG</Link>
               </td>
-              <td>Reducing website image weight, preparing social media avatars, converting modern WebP formats for legacy desktop apps, and optimizing Core Web Vitals.</td>
+              <td>Resizing or cropping a selected image, converting between supported formats, and comparing an exported image with its source.</td>
             </tr>
             <tr>
               <td><strong>5 PDF Utilities</strong></td>
@@ -110,7 +101,7 @@ export default function AboutPage() {
                 <Link href="/merge-pdf">Merge PDF</Link>,{' '}
                 <Link href="/split-pdf">Split PDF</Link>,{' '}
                 <Link href="/rotate-pdf">Rotate PDF</Link>,{' '}
-                <Link href="/compress-pdf">Compress PDF</Link>,{' '}
+                <Link href="/compress-pdf">PDF Re-save &amp; Size Check</Link>,{' '}
                 <Link href="/image-to-pdf">Image to PDF</Link>
               </td>
               <td>Combining PDF files, extracting or rotating pages, re-saving documents, and compiling images into PDFs.</td>
@@ -118,22 +109,19 @@ export default function AboutPage() {
           </tbody>
         </table>
 
-        <h2>Who DocuForge Is Built For</h2>
+        <h2>Example Tasks</h2>
         <p>
-          Our platform is designed for anyone who needs browser-based file utilities without creating an account:
+          Common workflows combine more than one tool. Check the linked instructions and inspect each output before replacing or sharing an original.
         </p>
         <ul>
           <li>
-            <strong>People who prefer browser-based processing</strong>: The tools process selected files in the browser, but this alone does not establish legal compliance or replace an organization&apos;s privacy requirements.
+            Resize or crop an image to a target shape, then export it to a format accepted by the destination.
           </li>
           <li>
-            <strong>Web Developers &amp; SEO Specialists</strong>: Developers preparing media assets for websites who prefer browser-based tools to a command-line workflow.
+            Extract or rotate PDF pages, then open the saved document in the PDF reader you use.
           </li>
           <li>
-            <strong>Students &amp; Academics</strong>: College students preparing assignments, application packets, and research papers where strict file size and PDF format requirements apply.
-          </li>
-          <li>
-            <strong>Remote Workers &amp; Everyday Users</strong>: Individuals who need to rotate a scanned document, resize a photo, or convert receipt images for their workflow.
+            Arrange scanned images and create a PDF with the page size and margins your recipient requires.
           </li>
         </ul>
 

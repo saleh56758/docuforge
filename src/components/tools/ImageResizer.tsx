@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, Lock, Unlock } from 'lucide-react';
 import { formatBytes, downloadBlob, replaceFileExtension } from '@/utils/fileHelpers';
+import ImageComparison from '@/components/ImageComparison';
 
 export default function ImageResizer() {
   const [file, setFile] = useState<File | null>(null);
@@ -14,6 +15,7 @@ export default function ImageResizer() {
   const [lockAspectRatio, setLockAspectRatio] = useState<boolean>(true);
   const [format, setFormat] = useState<string>('original');
   const [quality, setQuality] = useState<number>(90);
+  const [outputBlob, setOutputBlob] = useState<Blob | null>(null);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -24,6 +26,7 @@ export default function ImageResizer() {
       return;
     }
     setError(null);
+    setOutputBlob(null);
     setFile(selectedFile);
     const objectUrl = URL.createObjectURL(selectedFile);
     setPreviewUrl(objectUrl);
@@ -98,6 +101,7 @@ export default function ImageResizer() {
       canvas.toBlob(
         (blob) => {
           if (blob) {
+            setOutputBlob(blob);
             let ext = 'jpg';
             if (outputMime === 'image/png') ext = 'png';
             if (outputMime === 'image/webp') ext = 'webp';
@@ -121,6 +125,7 @@ export default function ImageResizer() {
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setFile(null);
     setPreviewUrl(null);
+    setOutputBlob(null);
     setOriginalWidth(0);
     setOriginalHeight(0);
     setTargetWidth(0);
@@ -293,14 +298,12 @@ export default function ImageResizer() {
           </div>
 
           {previewUrl && (
-            <div className="preview-container">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={previewUrl}
-                alt={file ? `Resized preview of ${file.name}` : 'Resized image preview'}
-                className="preview-img"
-              />
-            </div>
+            <ImageComparison
+              originalUrl={previewUrl}
+              outputBlob={outputBlob}
+              originalName={file.name}
+              outputLabel="Resized output"
+            />
           )}
 
           <div className="results-card">

@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, Sliders } from 'lucide-react';
 import { formatBytes, downloadBlob, replaceFileExtension } from '@/utils/fileHelpers';
+import ImageComparison from '@/components/ImageComparison';
 
 export default function ImageCompressor() {
   const [file, setFile] = useState<File | null>(null);
@@ -226,14 +227,12 @@ export default function ImageCompressor() {
           </div>
 
           {previewUrl && (
-            <div className="preview-container">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={previewUrl}
-                alt={file ? `Compressed preview of ${file.name}` : 'Compressed image preview'}
-                className="preview-img"
-              />
-            </div>
+            <ImageComparison
+              originalUrl={previewUrl}
+              outputBlob={compressedBlob}
+              originalName={file.name}
+              outputLabel="Compressed output"
+            />
           )}
 
           <div className="results-card">

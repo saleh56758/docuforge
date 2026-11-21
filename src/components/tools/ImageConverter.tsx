@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck } from 'lucide-react';
 import { formatBytes, downloadBlob, replaceFileExtension } from '@/utils/fileHelpers';
+import ImageComparison from '@/components/ImageComparison';
 
 export default function ImageConverter() {
   const [file, setFile] = useState<File | null>(null);
@@ -227,14 +228,12 @@ export default function ImageConverter() {
           </div>
 
           {previewUrl && (
-            <div className="preview-container">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={previewUrl}
-                alt={file ? `Converted preview of ${file.name}` : 'Converted image preview'}
-                className="preview-img"
-              />
-            </div>
+            <ImageComparison
+              originalUrl={previewUrl}
+              outputBlob={outputBlob}
+              originalName={file.name}
+              outputLabel={`${targetFormat.toUpperCase()} output`}
+            />
           )}
 
           <div className="results-card">

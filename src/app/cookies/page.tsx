@@ -38,7 +38,7 @@ export default function CookiesPage() {
           Cookie Policy
         </h1>
         <p className="article-meta" style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)' }}>
-          Last Updated: October 2026 • Contact: <code>{CONTACT_EMAIL}</code>
+          Last Updated: November 2026 • Contact: <code>{CONTACT_EMAIL}</code>
         </p>
       </header>
 
@@ -53,7 +53,7 @@ export default function CookiesPage() {
           DocuForge prioritizes a minimal cookie footprint. Because our 12 image and PDF utilities require no login or user accounts, we do not set any first-party session tracking cookies.
         </p>
         <p>
-          The application uses browser storage for the theme preference. AdSense placements and the AdSense script are currently disabled.
+          The application uses browser storage for the theme preference. The AdSense library is loaded for publisher verification, while ad units and placements remain disabled. This page does not claim that the third-party script never reads or stores browser data.
         </p>
 
         <table>
@@ -70,20 +70,20 @@ export default function CookiesPage() {
               <td><code>df_theme</code></td>
               <td>DocuForge (Local Storage)</td>
               <td>Remembers your Dark Mode / Light Mode color preference so your chosen theme persists.</td>
-              <td>Persistent (Stored locally in your browser)</td>
+              <td>Until removed by you or your browser</td>
             </tr>
             <tr>
-              <td>Advertising cookies</td>
-              <td>Not currently configured by DocuForge</td>
-              <td>AdSense is disabled in the application. If advertising is enabled later, this policy will be updated to reflect the actual providers.</td>
-              <td>Not applicable while disabled</td>
+              <td>AdSense verification library</td>
+              <td>Google</td>
+              <td>Loaded for publisher verification; ad units and placements are disabled. The project has not verified third-party cookie behavior.</td>
+              <td>Not determined by this project; consult Google&apos;s current information and check the deployed browser behavior.</td>
             </tr>
           </tbody>
         </table>
 
-        <h2>Future Advertising Configuration</h2>
+        <h2>Advertising Placements</h2>
         <p>
-          AdSense is not currently enabled in the application. If it is enabled in the future, provider-specific cookie and advertising disclosures will be added after account configuration and consent requirements are confirmed.
+          No ad units or placements are active. If placements are enabled in the future, update provider-specific disclosures and confirm applicable consent requirements against the actual account and deployment settings.
         </p>
 
         <h2>Managing and Disabling Cookies in Your Browser</h2>

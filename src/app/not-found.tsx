@@ -39,7 +39,7 @@ export default function NotFound() {
 
       <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'left' }}>
         <h2 style={{ fontSize: '1.125rem', fontWeight: 700, marginBottom: '1rem', textAlign: 'center' }}>
-          Popular Working Utilities
+          Available Utilities
         </h2>
         <div className="tool-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))' }}>
           {popularTools.map((tool) => (

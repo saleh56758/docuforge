@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Upload, Download, RefreshCw, AlertCircle, FileCheck, Zap } from 'lucide-react';
 import { formatBytes, calculateSavings, downloadBlob, replaceFileExtension } from '@/utils/fileHelpers';
+import ImageComparison from '@/components/ImageComparison';
 
 export default function JpgToWebp() {
   const [file, setFile] = useState<File | null>(null);
@@ -176,14 +177,12 @@ export default function JpgToWebp() {
           </div>
 
           {previewUrl && (
-            <div className="preview-container">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={previewUrl}
-                alt={file ? `WebP preview of ${file.name}` : 'Converted WebP image preview'}
-                className="preview-img"
-              />
-            </div>
+            <ImageComparison
+              originalUrl={previewUrl}
+              outputBlob={webpBlob}
+              originalName={file.name}
+              outputLabel="WebP output"
+            />
           )}
 
           <div className="results-card">

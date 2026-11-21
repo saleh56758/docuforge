@@ -123,7 +123,7 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
               {isImage ? 'Image Tool' : 'PDF Tool'}
             </span>
             {tool.badge && <span className="tool-card-badge">{tool.badge}</span>}
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: 'var(--color-success)', fontWeight: 600 }}>
+            <span className="tool-browser-status" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: 'var(--color-success)', fontWeight: 600 }}>
               <ShieldCheck size={14} aria-hidden="true" /> Browser-based file processing
             </span>
           </div>
@@ -134,24 +134,24 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
       </section>
 
       {/* Interactive Tool Sandbox */}
-      <section aria-label={`${tool.title} workspace`} style={{ marginBottom: '2.5rem' }}>
+      <section className="tool-workspace-section" aria-label={`${tool.title} workspace`} style={{ marginBottom: '2.5rem' }}>
         {children}
       </section>
 
-      {/* Compliant Ad Placement - Safe spacing from interaction buttons */}
+      {/* Ad placements stay absent until explicitly enabled. */}
       <AdPlaceholder slotId={`${tool.slug}-middle`} />
 
       {/* Detailed Overview: What It Does & When to Use It */}
       {tool.overview && (
         <section className="seo-content-section" style={{ marginTop: '2.5rem' }}>
           <div className="section-heading-wrapper">
-            <h2 className="section-heading">What is {tool.title} &amp; When Should You Use It?</h2>
+            <h2 className="section-heading">What {tool.title} Does</h2>
             <p className="section-subheading">
-              A comprehensive technical overview of practical applications, workflow advantages, and ideal use cases.
+              Review the available controls, supported formats, and output limits before processing a file.
             </p>
           </div>
           <div
-            className="prose"
+            className="prose tool-overview-prose"
             style={{
               background: 'var(--bg-surface)',
               border: '1px solid var(--border-subtle)',
@@ -174,9 +174,9 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
       {/* Key Features */}
       <section className="seo-content-section" style={{ marginTop: '2.5rem' }}>
         <div className="section-heading-wrapper">
-          <h2 className="section-heading">Key Features &amp; Technical Capabilities</h2>
+          <h2 className="section-heading">Controls and Limits</h2>
           <p className="section-subheading">
-            Features and limits for this browser-based utility.
+            Available options and format-specific behavior.
           </p>
         </div>
 
@@ -199,13 +199,11 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
       {tool.tips && tool.tips.length > 0 && (
         <section className="seo-content-section" style={{ marginTop: '2.5rem' }}>
           <div className="section-heading-wrapper">
-            <h2 className="section-heading">Tips &amp; Best Practices for Optimal Results</h2>
-            <p className="section-subheading">
-              Practical guidance from developers and digital media specialists to maximize quality and efficiency.
-            </p>
+            <h2 className="section-heading">Practical Checks</h2>
+            <p className="section-subheading">Check the result against your intended use before replacing the source file.</p>
           </div>
 
-          <div className="steps-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+          <div className="steps-grid">
             {tool.tips.map((tip, tipIdx) => (
               <div
                 key={tipIdx}
@@ -236,9 +234,9 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
         </section>
       )}
 
-      {/* Technical Specifications, Limits & Privacy Guarantee */}
+      {/* Processing details and limits */}
       <section
-        className="seo-content-section"
+        className="tool-processing-details seo-content-section"
         style={{
           background: 'var(--bg-surface)',
           border: '1px solid var(--border-subtle)',
@@ -250,7 +248,7 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', color: 'var(--color-success)' }}>
           <ShieldCheck size={24} aria-hidden="true" />
           <h2 className="section-heading" style={{ fontSize: '1.25rem', margin: 0, color: 'var(--text-primary)' }}>
-            Browser-based file processing
+            How your selected file is processed
           </h2>
         </div>
         <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
@@ -288,12 +286,12 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
       {relatedGuides.length > 0 && (
         <section className="seo-content-section" style={{ marginTop: '3rem' }} aria-labelledby="related-guides-heading">
           <div className="section-heading-wrapper">
-            <h2 id="related-guides-heading" className="section-heading">Related Technical Guides</h2>
+            <h2 id="related-guides-heading" className="section-heading">Related Guides</h2>
             <p className="section-subheading">
-              Practical background and best practices to help you get the most out of your digital assets.
+              Instructions and format background for related tasks.
             </p>
           </div>
-          <div className="tool-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+          <div className="tool-grid">
             {relatedGuides.map((guide) => (
               <Link
                 key={guide.slug}
@@ -317,13 +315,13 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
       {related.length > 0 && (
         <section className="seo-content-section" style={{ marginTop: '3rem' }}>
           <div className="section-heading-wrapper">
-            <h2 className="section-heading">Related Free Utilities</h2>
+            <h2 className="section-heading">Related Tools</h2>
             <p className="section-subheading">
-              Other browser-based tools you may find helpful for your workflow.
+              Continue with another step in this file workflow.
             </p>
           </div>
 
-          <div className="tool-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+          <div className="tool-grid">
             {related.map((relTool) => (
               <ToolCard key={relTool.id} tool={relTool} />
             ))}

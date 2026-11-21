@@ -25,8 +25,9 @@ export default function AdPlaceholder({
   className = ''
 }: AdPlaceholderProps) {
   const isAdsEnabled = SITE_CONFIG.adsEnabled;
+  if (!isAdsEnabled) return null;
+
   const hasValidAdConfiguration =
-    isAdsEnabled &&
     /^ca-pub-\d+$/.test(ADSENSE_PUBLISHER_ID ?? '') &&
     /^\d+$/.test(slotId);
 

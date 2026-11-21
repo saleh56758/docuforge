@@ -44,6 +44,9 @@ export default function GuidesIndexPage() {
         <p className="tool-page-subtitle">
           Practical articles about digital image formats, image compression, PDF documents, and browser-based file processing.
         </p>
+        <p className="tool-page-subtitle" style={{ marginTop: '0.75rem' }}>
+          Looking for a task sequence? See the <Link href="/blog">practical workflows</Link>.
+        </p>
       </header>
 
       <div className="tool-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', marginTop: '1.5rem' }}>

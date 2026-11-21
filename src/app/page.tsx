@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Zap, Lock, Cpu, BookOpen, ArrowRight, Image as ImageIcon, FileText } from 'lucide-react';
+import { ShieldCheck, Lock, BookOpen, ArrowRight, Image as ImageIcon, FileText } from 'lucide-react';
 import { TOOLS } from '@/data/tools';
 import { GUIDES } from '@/data/guides';
 import HomeDiscovery from '@/components/HomeDiscovery';
@@ -10,19 +10,19 @@ import AdPlaceholder from '@/components/AdPlaceholder';
 
 const HOMEPAGE_FAQS = [
   {
-    question: 'How do DocuForge tools work without uploading files?',
+    question: 'Where are selected files processed?',
     answer:
       'The image and PDF tool components read selected files in your browser and perform their transformations locally using browser APIs and pdf-lib. Their processing code does not send selected file contents to a DocuForge upload endpoint. This does not describe unrelated website or third-party network requests.'
   },
   {
     question: 'Are these tools completely free to use?',
     answer:
-      'Yes, all tools on DocuForge are 100% free with no hidden paywalls, no trial limits, and no account registration required.'
+      'The tools are available without charge and do not require an account. Individual tools may have file-size limits or depend on your browser and device resources.'
   },
   {
-    question: 'Is it safe to process confidential documents like tax forms or contracts?',
+    question: 'Which file types are supported?',
     answer:
-      'The file-processing components operate in your browser and do not send selected files to a DocuForge upload endpoint. Consider your organization’s policies and review the privacy policy before processing sensitive documents; this is not a legal or compliance certification.'
+      'Image tools accept JPG/JPEG, PNG, or WebP, depending on the tool. PDF tools accept PDF files. Check each tool page for its specific input and output formats.'
   },
   {
     question: 'Do DocuForge tools work on mobile phones and tablets?',
@@ -55,39 +55,18 @@ export default function HomePage() {
         <HomeDiscovery tools={TOOLS} />
       </section>
 
-      {/* Privacy Guarantee Banner */}
-      <section className="privacy-banner" aria-label="Privacy Guarantee">
+      {/* File-processing scope */}
+      <section className="privacy-banner" aria-label="File-processing scope">
         <div className="privacy-banner-icon">
           <Lock size={26} aria-hidden="true" />
         </div>
         <div className="privacy-banner-content">
           <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-            Files are processed in your browser
+            Selected files are processed in your browser
           </h2>
           <p>
-            The image and PDF tools process selected files locally in your browser. Their file-processing code does not upload those files to a DocuForge endpoint. This statement does not cover ordinary website requests, hosting logs, or third-party services such as the contact form.
+            The inspected image and PDF tool code processes selected files in your browser and does not send their contents to a DocuForge upload endpoint. This does not describe page requests, hosting, or third-party services such as the contact form. Read the <Link href="/privacy">Privacy Policy</Link> for that distinction.
           </p>
-        </div>
-      </section>
-
-      {/* Platform Introduction & Overview */}
-      <section className="seo-content-section" style={{ background: 'var(--bg-surface)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-xl)', padding: '2.25rem', marginBottom: '3.5rem' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.75rem', color: 'var(--text-primary)' }}>
-          Browser-Based Image and PDF Tools
-        </h2>
-        <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1rem' }}>
-          <strong>DocuForge</strong> provides 12 browser-based tools: seven image utilities and five PDF tools for common file-processing tasks.
-        </p>
-        <p style={{ fontSize: '0.9375rem', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '1rem' }}>
-          DocuForge provides image and PDF utilities that process selected files in your browser using browser APIs and <code>pdf-lib</code>. The tool components inspected do not send selected file contents to a DocuForge upload endpoint. Website requests and contact-form submissions are separate; see the <Link href="/privacy">Privacy Policy</Link> for more information.
-        </p>
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1.25rem' }}>
-          <Link href="/about" className="btn-ghost" style={{ fontSize: '0.875rem' }}>
-            Learn more about our architecture →
-          </Link>
-          <Link href="/guides" className="btn-ghost" style={{ fontSize: '0.875rem' }}>
-            Explore our technical tutorials →
-          </Link>
         </div>
       </section>
 
@@ -131,44 +110,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose DocuForge Section */}
+      {/* Example workflows */}
       <section className="seo-content-section" style={{ marginTop: '2rem' }}>
         <div className="section-heading-wrapper" style={{ textAlign: 'center', maxWidth: 650, margin: '0 auto 2.5rem auto' }}>
-          <h2 className="section-heading">Engineered for Privacy, Speed & Precision</h2>
+          <h2 className="section-heading">Start with a task, then check the result</h2>
           <p className="section-subheading">
-            Built around browser-based file processing and practical image and PDF workflows.
+            These short workflows describe what the current tools can do; keep the original file and verify each output.
           </p>
         </div>
 
         <div className="steps-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
           <div className="step-card">
-            <div className="step-number" style={{ background: 'var(--color-image-tool-light)', color: 'var(--color-image-tool)' }}>
-              <Zap size={16} aria-hidden="true" />
-            </div>
-            <h3 className="step-title">Instant Performance</h3>
+            <h3 className="step-title">Prepare an image for a page</h3>
             <p className="step-text">
-              Zero network upload delays. Large images and multi-page PDFs are processed with native browser acceleration, giving you immediate output.
+              Resize to the pixel dimensions your layout needs, then compare a JPG or WebP export. A format change does not guarantee a smaller file.
             </p>
+            <Link href="/image-resizer">Resize image</Link> · <Link href="/image-converter">Compare formats</Link>
           </div>
 
           <div className="step-card">
-            <div className="step-number" style={{ background: 'var(--color-success-light)', color: 'var(--color-success)' }}>
-              <ShieldCheck size={16} aria-hidden="true" />
-            </div>
-            <h3 className="step-title">Local File Processing</h3>
+            <h3 className="step-title">Build a PDF from scans</h3>
             <p className="step-text">
-              The file-processing components do not send selected file contents to a DocuForge upload endpoint. Browser memory and object URL cleanup are managed by the browser and the individual tool interfaces.
+              Add images in reading order, select A4 or US Letter, choose orientation and margins, then inspect the pages in a PDF reader.
             </p>
+            <Link href="/image-to-pdf">Create an image PDF</Link> · <Link href="/guides/how-to-convert-images-to-pdf">Read the workflow</Link>
           </div>
 
           <div className="step-card">
-            <div className="step-number" style={{ background: 'var(--color-pdf-tool-light)', color: 'var(--color-pdf-tool)' }}>
-              <Cpu size={16} aria-hidden="true" />
-            </div>
-            <h3 className="step-title">Full Document Fidelity</h3>
+            <h3 className="step-title">Extract and arrange PDF pages</h3>
             <p className="step-text">
-              Vector paths, crisp fonts, transparent PNG layers, and color profiles are preserved with mathematical precision.
+              Enter page numbers or ranges to create one extracted PDF. Rotate pages if needed, and check forms or signatures in the downloaded copy.
             </p>
+            <Link href="/split-pdf">Extract pages</Link> · <Link href="/rotate-pdf">Rotate pages</Link>
           </div>
         </div>
       </section>
@@ -181,12 +154,17 @@ export default function HomePage() {
               Practical Guides & Tutorials
             </h2>
             <p className="section-subheading">
-              Expert advice on image compression, PDF management, and web performance.
+              Specific instructions, current tool controls, and checks for reviewing each output.
             </p>
           </div>
-          <Link href="/guides" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
-            <BookOpen size={15} aria-hidden="true" /> View All Guides <ArrowRight size={14} aria-hidden="true" />
-          </Link>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <Link href="/guides" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+              <BookOpen size={15} aria-hidden="true" /> View Guides <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+            <Link href="/blog" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem' }}>
+              View Practical Workflows <ArrowRight size={14} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
 
         <div className="tool-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', marginBottom: '2rem' }}>

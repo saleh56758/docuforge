@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { AlertTriangle, ShieldCheck, Mail, FileCheck } from 'lucide-react';
-import { getAbsoluteUrl, getSiteUrl, SITE_CONFIG } from '@/utils/siteConfig';
+import { AlertTriangle } from 'lucide-react';
+import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 
 const CONTACT_EMAIL = 'hassaansaleh56@gmail.com';
 
@@ -64,7 +64,7 @@ export default function DisclaimerPage() {
 
         <h2>1. General Information &amp; &quot;As-Is&quot; Software</h2>
         <p>
-          All tools, calculators, guides, and services on DocuForge are provided on an &quot;as-is&quot; and &quot;as-available&quot; basis without warranty of any kind. The image and PDF tools use browser APIs and <code>pdf-lib</code> to process selected files in the browser. Unexpected behavior may arise with unsupported, corrupted, encrypted, or legacy document formats.
+          DocuForge&apos;s tools, guides, and services are provided on an &quot;as-is&quot; and &quot;as-available&quot; basis without warranty of any kind. The image and PDF tools use browser APIs and <code>pdf-lib</code> to process selected files in the browser. Unexpected behavior may arise with unsupported, corrupted, encrypted, or legacy document formats.
         </p>
 
         <h2>2. User Responsibility: Keep Original Master Copies</h2>

@@ -47,9 +47,6 @@ export default function FaqSection({ title = 'Frequently Asked Questions', faqs 
         <h2 id="faq-heading" className="section-heading">
           {title}
         </h2>
-        <p className="section-subheading">
-          Clear answers about browser processing, performance, security, and privacy.
-        </p>
       </div>
 
       <div className="faq-list">

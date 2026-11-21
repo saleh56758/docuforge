@@ -100,7 +100,7 @@ export default function TermsPage() {
           DOCUFORGE AND ALL TOOLS, FEATURES, AND CONTENT ARE PROVIDED STRICTLY ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot; BASIS, WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT.
         </p>
         <p>
-          While we strive for high precision and stability across all algorithms, we do not warrant that:
+          Results can vary with the source file, selected settings, browser, and device. We do not warrant that:
         </p>
         <ul>
           <li>The tools will always operate error-free, uninterrupted, or without temporary browser memory limitations on very large files.</li>

@@ -3,299 +3,204 @@ import { GuideMetadata } from '@/types';
 export const GUIDES: GuideMetadata[] = [
   {
     slug: 'how-to-compress-images-without-losing-quality',
-    title: 'How to Compress Images While Managing File Size and Quality',
-    description: 'Learn how compression settings affect JPG and WebP images, compare lossless and lossy formats, and choose a workflow that balances file size and visual quality.',
-    readingTime: '6 min read',
-    author: 'DocuForge Technical Team',
-    tags: ['Optimization', 'Web Performance', 'Core Web Vitals'],
+    title: 'Prepare Images for a Website: Resize, Convert, Compare',
+    description: 'Use target dimensions and browser format conversion to prepare an image, then compare the real output instead of relying on a promised compression percentage.',
+    readingTime: '4 min read',
+    author: 'DocuForge',
+    tags: ['Image Sizing', 'Image Formats', 'Web Workflows'],
     content: `
-## The Critical Impact of Image Weight on Modern Websites
+## Start with the displayed dimensions
 
-Images can account for a substantial share of a page's transferred data, depending on its content and implementation. Large image files may take longer to transfer, particularly on slower connections. Image optimization can help page performance, but the result depends on the page and its other resources.
+The number of pixels and the encoded file size are different things. If an image is 2400 × 1600 pixels but the design displays it at 1200 pixels wide, the [Image Resizer](/image-resizer) can reduce it to 1200 × 800 while keeping its proportions. This example halves each dimension; it does not predict a particular file-size reduction.
 
-Optimizing images is not about destroying image fidelity or producing pixelated visuals. It is about understanding how human visual perception works and leveraging mathematical quantization algorithms to strip unneeded binary data.
+Keep the original file. Resizing removes pixels, and upscaling a smaller source cannot restore detail.
 
-### Understanding Lossless vs. Lossy Compression
+## Compare a useful export
 
-When selecting an optimization technique, it is essential to understand the two fundamental families of compression algorithms:
+1. Select the image in the [Image Compressor](/image-compressor). The tool accepts JPG, PNG, and WebP up to 25 MB.
+2. Choose a scale from 25% to 100% and a quality setting from 10% to 95%. The quality value is an encoder setting, not a target file size.
+3. Check both the output dimensions and the displayed size change. The output can be larger.
+4. Inspect the result at the size it will be used. Look closely at text, sharp edges, gradients, and transparent areas.
 
-- **Lossless Compression**: Preserves decoded pixel values, though metadata or ancillary chunks may differ. It is common in PNG and lossless WebP. File-size results depend on the source image.
-- **Lossy Compression**: Reduces image data to make smaller files, with a possible trade-off in visual quality. It is common in JPEG and lossy WebP. The outcome depends on the source image, format, dimensions, and quality setting.
+PNG input in this compressor is encoded as WebP, which supports transparency. If the recipient requires PNG, use the [Image Converter](/image-converter) and compare its output instead. JPG has no transparency; converting transparent artwork to JPG requires a background color.
 
-### The Human Eye & Perceptual Quantization
+## Choose the next step from the problem
 
-Human vision is significantly more sensitive to variations in luminance (brightness and edge contrast) than to chrominance (color hue nuances). Modern lossy compressors take advantage of this biological trait through chroma subsampling (often 4:2:0 subsampling), storing color data at half the resolution of brightness data.
+- If the image is too many pixels wide or tall, resize it first.
+- If its framing includes unwanted edges, crop it with the [Image Cropper](/image-cropper).
+- If a site or app requires a particular format, use the [Image Converter](/image-converter), then verify the saved file opens in that destination.
+- If you are preparing an image for a PDF, check the page-size requirements before converting it with [Image to PDF](/image-to-pdf).
 
-When you adjust the quality slider on the [DocuForge Image Compressor](/image-compressor), you are directly controlling the quantization matrix:
-
-- **Higher quality settings**: Usually retain more visual detail and may produce larger output files.
-- **Middle quality settings**: Can provide a useful balance for some images, but compare the output with the source before use.
-- **Lower quality settings**: May produce more visible compression artifacts, especially around edges and text.
-
-### Compression Benchmarks Across Common Formats
-
-| Format | Native Compression | Recommended Quality | Average Size Reduction | Best Use Case |
-| :--- | :--- | :--- | :--- | :--- |
-| **JPEG / JPG** | Lossy | Depends on encoder and use | Varies by image and settings | Photographs |
-| **WebP** | Lossy & Lossless | Depends on encoder and use | Varies by image and settings | Web images where supported |
-| **PNG** | Lossless | Not applicable | Varies by image | Graphics and images needing transparency |
-
-### Four Step Strategy for Peak Optimization
-
-To prepare images for a website, consider these steps and review the resulting quality:
-
-1. **Resize Dimensions Before Compressing**: If an image is larger than its intended display size, reduce its dimensions with our [Image Resizer](/image-resizer). This changes the pixel dimensions, so keep a copy of the original.
-2. **Crop Out Unnecessary Margins**: Frame your subject tightly using the [Image Cropper](/image-cropper) to remove extraneous background clutter.
-3. **Compare Formats**: Try our [JPG to WebP Converter](/jpg-to-webp) and compare the result. File-size and visual-quality differences depend on the source and selected settings.
-4. **Preserve Master Copies**: Always keep an uncompressed source archive on your local hard drive. Once lossy compression is applied, the discarded high-frequency data cannot be recovered.
+There is no universally best quality value. Keep the source, compare the actual output, and choose the smallest file that remains acceptable for the intended use.
     `
   },
   {
     slug: 'jpg-vs-png-vs-webp-comparison',
-    title: 'JPG vs PNG vs WebP: Image Format Comparison',
-    description: 'Compare file sizes, compression efficiency, transparency support, and browser compatibility to pick the right image format for your project.',
-    readingTime: '7 min read',
-    author: 'DocuForge Technical Team',
-    tags: ['Web Design', 'Formats', 'Core Web Vitals'],
+    title: 'JPG vs PNG vs WebP: Choose a Format for the Task',
+    description: 'Compare transparency, encoding trade-offs, and compatibility for common image workflows without assuming one format is always smaller.',
+    readingTime: '4 min read',
+    author: 'DocuForge',
+    tags: ['Image Formats', 'Compatibility', 'Web Workflows'],
     content: `
-## The Format Dilemma: Choosing the Right Tool for the Job
+## Compare the practical differences
 
-Selecting the wrong digital image format is one of the most common causes of sluggish websites, bloated mobile data consumption, and pixelated graphics. While all three major web formats—JPG, PNG, and WebP—render pixels on screens, their underlying compression mathematics, color models, and feature sets differ drastically.
-
-Understanding these technical distinctions empowers you to minimize file weight while delivering pristine visual clarity.
-
-### Detailed Technical Comparison
-
-| Feature | JPEG / JPG | PNG | WebP |
+| Format | Transparency | Typical trade-off | Check before using |
 | :--- | :--- | :--- | :--- |
-| **Compression Architecture** | Lossy (DCT) | Lossless (LZ77 + Huffman) | Both Lossy (VP8) & Lossless |
-| **Alpha Transparency** | ❌ No (Opaque only) | ✅ Yes (8-bit alpha channel) | ✅ Yes (8-bit alpha channel) |
-| **Animation Support** | ❌ No | ❌ No (Separate APNG) | ✅ Yes |
-| **Color Depth** | 24-bit Truecolor (16.7M) | 8-bit Indexed or 24/48-bit | 24-bit RGB with 8-bit Alpha |
-| **Typical File Footprint** | Varies | Varies | Varies by image and encoder |
-| **Browser Support** | Broadly supported | Broadly supported | Check support for target browsers |
-| **Primary Sweet Spot** | Camera photos, print media | Logos, charts, transparent UI | Modern web pages, mobile apps |
+| JPG / JPEG | No | Lossy encoding is widely supported; repeated lossy saves can introduce more changes. | Choose a background for transparent source pixels and inspect edges. |
+| PNG | Yes | Lossless encoding is useful when exact decoded pixels or transparency matter; photographic files may be large. | Check the recipient accepts PNG and compare its actual size. |
+| WebP | Yes | Supports lossy and lossless encoding; this site’s converters use browser Canvas encoding. | Confirm the target app, upload portal, or older editor accepts WebP. |
 
-### Deep Dive: JPEG (Joint Photographic Experts Group)
+File size depends on the image, its dimensions, the encoder, and its settings. A format name alone cannot tell you which result will be smaller.
 
-Created in 1992, JPEG remains a widely used format for digital cameras and legacy publishing. JPEG divides the image into 8x8 pixel blocks and applies the Discrete Cosine Transform (DCT) to discard subtle color variations that human eyes struggle to see.
+## Select based on the destination
 
-- **Strengths**: Broad support across browsers, devices, and software.
-- **Weaknesses**: No transparency support (transparent pixels become solid white or black). Repeatedly saving a JPEG causes generational degradation.
-- **When to Use**: High-resolution photography meant for desktop download, legacy software editing, or physical printing.
+- **A photo for a service that accepts JPG:** use JPG if compatibility matters most. If the source has transparency, choose a background before conversion.
+- **A logo or screenshot with transparent pixels:** keep PNG or use WebP only if the destination accepts it. The [PNG to JPG tool](/png-to-jpg) fills transparent pixels with a selected solid color.
+- **A website image:** test WebP with the browsers and content pipeline the site actually supports. Compare the downloaded image with the source rather than relying on a fixed savings claim.
+- **An image for older desktop software:** check that software’s supported formats first; [WebP to JPG](/webp-to-jpg) can create a JPEG copy.
 
-### Deep Dive: PNG (Portable Network Graphics)
-
-Developed as an open-source replacement for GIF in 1996, PNG utilizes lossless DEFLATE compression. Every single pixel value is preserved exactly as created.
-
-- **Strengths**: Pixel-perfect precision, support for 256 levels of alpha transparency, and zero compression artifacting around high-contrast edges and typography.
-- **Weaknesses**: PNG files can be larger than JPEG files for photographic content, depending on the image and encoding.
-- **When to Use**: Company logos, website navigation icons, technical schematics, software screenshots, and graphics requiring transparent backgrounds. If your PNG files are too heavy for email, convert them using our [PNG to JPG Converter](/png-to-jpg).
-
-### Deep Dive: WebP (Google Next-Gen Format)
-
-Introduced by Google, WebP supports lossy and lossless compression, transparency, and animation. Check that the browsers and software in your workflow support the format.
-
-- **Strengths**: Supports lossy and lossless options, transparency, and animation.
-- **Weaknesses**: Older desktop software (like Adobe CS6 or legacy photo viewers) may require plugins to open local \`.webp\` files.
-- **When to Use**: Consider WebP for websites and apps when your target browsers and software support it. If you need a different format, use our [WebP to JPG Converter](/webp-to-jpg).
-
-### Decision Guide: Which Format Should You Choose?
-
-1. **Does the image require a transparent background?**
-   - If yes: Choose **WebP** for websites, or **PNG** for desktop publishing and print.
-2. **Is the image a photographic scene or complex artwork?**
-   - If yes: Convert to **WebP** via our [JPG to WebP Converter](/jpg-to-webp) for web use, or keep **JPG** for printing.
-3. **Is the graphic a simple UI icon, vector export, or screenshot?**
-   - If yes: Use **PNG** or lossless **WebP**.
-4. **Need to batch convert formats?**
-   - Use our [Image Converter](/image-converter) to convert between JPG, PNG, and WebP in your browser.
+The [Image Converter](/image-converter) re-encodes one image at a time as JPG, PNG, or WebP. Conversion is not a substitute for keeping an editable source, and some metadata or pixel data may change. Save the result under a new name and verify it in the target application.
     `
   },
   {
     slug: 'how-to-reduce-pdf-file-size',
-    title: 'How to Reduce PDF File Size for Email Attachments and Online Portals',
-    description: 'Explore practical ways to manage large PDFs, including extracting needed pages, resizing source images, and testing browser-based PDF re-saving.',
-    readingTime: '5 min read',
-    author: 'DocuForge Technical Team',
+    title: 'How to Troubleshoot a Large PDF',
+    description: 'Find out whether pages, embedded images, or the source export are responsible, and understand what DocuForge’s PDF re-save tool can and cannot reduce.',
+    readingTime: '3 min read',
+    author: 'DocuForge',
     tags: ['PDF Tools', 'Optimization', 'Office Productivity'],
     content: `
-## Why PDF File Sizes Vary
+## First identify what is taking space
 
-PDF size depends on its page count, embedded images, image resolution, fonts, and how the source application created the file. A PDF made from scanned photos may be much larger than one containing mostly text. There is no single setting that guarantees a smaller result for every document.
+PDF size can come from scanned page images, embedded fonts, many pages, or the way the source application wrote the file. A text-heavy PDF and a photo scan can behave very differently. Check the file’s properties in a PDF reader and inspect whether the pages are images before choosing a workflow.
 
-### Practical Ways to Work with a Large PDF
+## What the DocuForge tool actually does
 
-1. **Extract only the pages you need**: Use the [Split PDF tool](/split-pdf) to create a new PDF from selected page ranges. Review the resulting document before sharing it.
-2. **Resize source images first**: If you are creating a PDF from images, resize oversized images with the [Image Resizer](/image-resizer) before using the [Image to PDF tool](/image-to-pdf).
-3. **Test PDF re-saving**: The [Compress PDF tool](/compress-pdf) rebuilds a PDF from copied pages and saves with object streams enabled. It reports the before-and-after sizes, but the result may be larger or smaller. Keep the original and inspect the output.
+The tool at [/compress-pdf](/compress-pdf) loads a PDF with \`pdf-lib\`, copies its pages into a new document, and saves with object streams enabled. It does **not** downsample or recompress embedded page images. The output can be smaller, similar in size, or larger. Keep the original and compare both file sizes.
 
-### Handling Sensitive Documents
+## Workflows to try
 
-The inspected tool components process selected files in the browser and do not send those files to a DocuForge upload endpoint. This does not cover ordinary website requests, hosting, device security, or third-party services. Review the [Privacy Policy](/privacy) and your organization's requirements before processing sensitive files.
+1. **Only some pages are needed:** use [Split PDF](/split-pdf) with a range such as \`2-5, 8\`. This makes a new PDF with the selected pages; it does not optimize the remaining pages.
+2. **You are creating a PDF from images:** resize oversized images to a suitable pixel dimension with [Image Resizer](/image-resizer), then create the document with [Image to PDF](/image-to-pdf). This changes the source images, so retain the originals.
+3. **You have an existing image-heavy PDF:** use a PDF application that can downsample images if the document must become smaller. Compare its output and inspect text, images, forms, and signatures.
+4. **A portal has a strict limit:** check its exact file-size and format rules. Do not assume a “compress” action meets the limit; verify the saved file’s actual size.
+
+The inspected tool components process selected files in the browser and do not send their contents to a DocuForge upload endpoint. This does not cover hosting requests, device security, or third-party services; see the [Privacy Policy](/privacy).
     `
   },
   {
     slug: 'how-to-merge-pdf-files-securely',
-    title: 'How to Merge Multiple PDF Files in Your Browser',
+    title: 'How to Merge PDFs and Verify the Result',
     description: 'Arrange PDF files, merge them with the DocuForge browser-based tool, and check the resulting document.',
-    readingTime: '5 min read',
-    author: 'DocuForge Technical Team',
+    readingTime: '3 min read',
+    author: 'DocuForge',
     tags: ['PDF Tools', 'Security', 'Document Management'],
     content: `
-## Prepare Your Documents
+## Prepare a predictable order
 
-Before merging, choose the files you want to combine and keep an unchanged copy of each original. The DocuForge [Merge PDF tool](/merge-pdf) reads selected files in the browser and uses pdf-lib to copy their pages into a new document.
+Keep copies of the source PDFs and decide the reading order before opening the [Merge PDF tool](/merge-pdf). The workspace shows the selected filenames, page counts, and total input size. Use its up and down controls to arrange whole files; it does not reorder pages within a file.
 
-### Step-by-Step Guide to Merging PDFs
+For example, to combine a cover sheet, a two-page form, and an appendix, add them in that order and confirm the page count of each before merging. If a page is sideways, use [Rotate PDF](/rotate-pdf) on the source first, or rotate the merged output and inspect it.
 
-1. **Prepare your files**: Ensure all PDFs are unencrypted (remove password protection first if applicable).
-2. **Select files**: Open the [DocuForge Merge PDF Tool](/merge-pdf) and select the PDF files in the workspace.
-3. **Order your files**: Arrange files in chronological or logical reading order using the intuitive Up and Down arrow controls.
-4. **Verify total page counts**: Check that each included document has loaded with its expected page count.
-5. **Merge and save**: Start the merge and download the resulting PDF.
+## Merge and inspect
 
-### Review the Result
+1. Select at least two PDF files. A file that fails to load may be invalid or encrypted; the tool reports an error for files it cannot read.
+2. Check names, order, and page counts. Remove any unintended file.
+3. Start the merge and save the downloaded document under a new name.
+4. Open the result in the PDF reader your recipient will use. Check page order, page orientation, links, forms, bookmarks, signatures, and any other features you rely on.
 
-The tool rebuilds a PDF from copied pages. Check the output in your target PDF reader, particularly if your documents contain interactive forms, signatures, bookmarks, or other document-specific features. The file-processing code inspected does not send selected file contents to a DocuForge upload endpoint; this is not a legal or compliance certification.
-
-### Managing Orientation and Page Extraction
-
-Before merging, make sure that all pages read right-side up. If you have upside-down scans, use our [Rotate PDF Tool](/rotate-pdf) first. If you only need certain chapters or pages from a large source file, use our [Split PDF Tool](/split-pdf) to extract them before merging everything into your final master document.
+This tool copies pages with \`pdf-lib\`; do not assume every interactive or document-specific feature in the original survives. The selected files are processed by the tool in your browser, but that is not a compliance certification. Read the [Privacy Policy](/privacy) for the scope of that statement.
     `
   },
   {
     slug: 'how-to-convert-images-to-pdf',
-    title: 'How to Convert and Compile Images into a Clean Multi-Page PDF Document',
-    description: 'Learn how to compile receipts, photos, and scanned identity documents into standard A4 or Letter PDFs ready for professional submission.',
-    readingTime: '5 min read',
-    author: 'DocuForge Technical Team',
+    title: 'Turn Ordered Images into an A4 or Letter PDF',
+    description: 'Create a PDF with one image per page, choose paper size and margins, and check the exported document before sending or printing it.',
+    readingTime: '3 min read',
+    author: 'DocuForge',
     tags: ['PDF Tools', 'Productivity', 'Office Tips'],
     content: `
-## Why Convert Images into a Unified PDF?
+## Decide the page shape first
 
-Some government portals, universities, accounting departments, and legal offices require a single, multi-page PDF instead of separate JPG and PNG files. Check the recipient's submission requirements.
+The [Image to PDF tool](/image-to-pdf) makes one PDF page for each selected JPG, PNG, or WebP image. It can use A4, US Letter, or Fit to Image. A4 and Letter have 20- or 40-point margin options and automatic, portrait, or landscape orientation. Fit to Image uses the image’s pixel dimensions as PDF points and does not offer the page-margin or orientation controls.
 
-Submitting loose photos creates major problems: files arrive in random order, image orientations are mismatched, and attachments get rejected by email file size filters.
+## Assemble a readable packet
 
-### Common Problems When Creating PDFs from Images
+1. Select the scans or photos. Add them in sequence, then use the up and down buttons to correct the page order.
+2. Choose A4 or US Letter if the recipient specifies paper size. Use Auto orientation to match each image’s shape, or select one orientation for all pages.
+3. Choose a margin. If text is close to an image edge, inspect the PDF at print size; a margin cannot restore content already cut off in the source image.
+4. Generate the PDF and open it in a PDF reader. Check page order, rotation, legibility, and final file size.
 
-- **Mismatched aspect ratios**: Images taken in different orientations (vertical smartphone receipts vs horizontal desktop screenshots) often look distorted when converted by basic tools.
-- **Inflated file size**: Simply wrapping raw camera photos can create a massive 50 MB PDF that gets rejected by email servers.
-- **Unintended margins**: Inconsistent borders make official submissions look amateurish.
+The tool embeds images; it does not recognize text or create searchable OCR. Large camera images can make a large PDF. If size matters, resize source images first with [Image Resizer](/image-resizer), preserve the originals, and compare the resulting PDF against the recipient’s requirements.
 
-### Best Practices for Clean Image-to-PDF Conversion
-
-1. **Select the Right Page Standard**:
-   - If compiling documents for international submission or European offices, select **A4**.
-   - For North American offices and institutions, select **US Letter**.
-   - If you want the PDF pages to match the exact dimensions of each photo with zero borders, select **Fit to Image**.
-2. **Order Carefully**: Group receipts chronologically or sequence multi-page contracts from page 1 to the end using the reorder buttons in our [Image to PDF Converter](/image-to-pdf).
-3. **Choose Consistent Margins**: Adding a small uniform margin prevents text on receipt edges from getting cut off by office printers.
-4. **Compress Oversized Photos First**: If your camera photos are 10 MB each, run them through our [Image Compressor](/image-compressor) before compiling them into a PDF.
-
-### Handling Sensitive Images
-
-The inspected image-to-PDF component reads selected images and creates the PDF in the browser; it does not send those files to a DocuForge upload endpoint. This does not cover ordinary website requests, device security, or third-party services. Consider your organization's rules before processing sensitive records.
+The inspected tool code processes selected images in the browser and does not send their contents to a DocuForge upload endpoint. That statement does not cover hosting requests, device security, or third-party services. See the [Privacy Policy](/privacy).
     `
   },
   {
     slug: 'how-to-crop-and-resize-images-for-web-and-social-media',
-    title: 'How to Crop and Resize Images for Web and Social Media Platforms',
-    description: 'Master standard aspect ratios (1:1, 16:9, 4:5, 9:16), pixel dimensions for Open Graph cards, and how to avoid interpolation blur.',
-    readingTime: '6 min read',
-    author: 'DocuForge Technical Team',
+    title: 'Crop and Resize an Image Without Stretching It',
+    description: 'Choose between removing part of an image and changing its pixel dimensions, then check the result against the current requirements of its destination.',
+    readingTime: '3 min read',
+    author: 'DocuForge',
     tags: ['Design', 'Social Media', 'Image Optimization'],
     content: `
-## Why Image Dimensions Matter for Visual Engagement
+## Cropping and resizing solve different problems
 
-Websites and social platforms may display images within particular aspect ratios or dimensions. Depending on the service, an image that does not match its requirements may be cropped, resized, or recompressed.
+Cropping removes part of the frame. Resizing changes the pixel width and height of the whole frame. Neither operation guarantees a particular file size or appearance; the source image and output encoding matter.
 
-Choosing suitable dimensions and framing can help your image display as intended on your target platform.
+## Example: make a square avatar
 
-### Standard Aspect Ratios & Dimension Cheat Sheet
+1. Open the [Image Cropper](/image-cropper) and choose the 1:1 preset.
+2. Move the crop box to include the subject. Drag its bottom-right handle to resize it; the current interface does not provide four independent corner handles.
+3. Apply the crop and check the output dimensions and framing.
+4. If the destination specifies pixel dimensions, use [Image Resizer](/image-resizer) to set them. Keep aspect-ratio lock on unless you intend to distort the image.
 
-| Platform / Use Case | Aspect Ratio | Ideal Dimensions | Tool Recommendation |
-| :--- | :--- | :--- | :--- |
-| **Open Graph (Web Link Previews)** | 1.91:1 | 1200 x 630 px | [Image Resizer](/image-resizer) |
-| **LinkedIn / GitHub / Discord Avatar** | 1:1 (Square) | 400 x 400 px | [Image Cropper](/image-cropper) |
-| **Instagram Feed (Portrait)** | 4:5 | 1080 x 1350 px | [Image Cropper](/image-cropper) |
-| **Instagram / TikTok Stories** | 9:16 (Vertical) | 1080 x 1920 px | [Image Cropper](/image-cropper) |
-| **YouTube Thumbnail / Presentation** | 16:9 (Widescreen) | 1280 x 720 px | [Image Cropper](/image-cropper) |
-| **Standard Website Hero Banner** | 16:9 or 21:9 | 1920 x 1080 px | [Image Resizer](/image-resizer) |
+For a 16:9 banner, select that crop preset and then resize to the exact pixel dimensions required by the target. For other ratios such as 4:5, check the destination’s current specifications; the cropper does not provide that preset.
 
-### The Difference Between Cropping and Resizing
-
-- **Cropping**: Changes the *composition and aspect ratio* of an image by cutting away outer edges or background margins. It does not scale or distort the pixels that remain. Use our [Image Cropper](/image-cropper) when framing an avatar or converting a horizontal photo into a square.
-- **Resizing**: Changes the *overall pixel dimensions* of the entire image by scaling the pixel grid up or down. Use our [Image Resizer](/image-resizer) when your composition is already perfect, but the file is 4000px wide and you need it to be exactly 1200px wide.
-
-### Best Practices to Prevent Blurry Resizing
-
-1. **Downscale, Don't Upscale**: Scaling a 4000px image down to 1200px results in razor-sharp details. Upscaling a 400px thumbnail to 1920px forces the browser to invent missing pixel data, producing noticeable blur.
-2. **Lock Aspect Ratios**: Always keep the aspect ratio lock enabled when resizing to prevent awkward horizontal or vertical stretching.
-3. **Compress After Resizing**: Once your image is sized to the exact layout dimensions, run it through our [Image Compressor](/image-compressor) to minimize byte weight.
+Upscaling adds pixels through resampling but cannot recover detail that was not in the original. Downscaling may soften fine text or edges, so compare the saved output at its expected display size. Keep an untouched source if you may need another crop later.
     `
   },
   {
     slug: 'why-client-side-file-tools-are-safer',
     title: 'How Browser-Based File Processing Works',
-    description: 'Learn how local browser-based image and PDF processing differs from upload-based workflows and what privacy considerations still apply.',
-    readingTime: '6 min read',
-    author: 'DocuForge Technical Team',
+    description: 'See what local image and PDF processing means, what requests still occur when visiting the site, and which privacy limits remain.',
+    readingTime: '3 min read',
+    author: 'DocuForge',
     tags: ['Privacy', 'Security', 'Web Architecture'],
     content: `
-## Browser-Based Processing
+## What “processed in your browser” describes
 
-Some image and PDF tools can read selected files in the browser and perform transformations locally. DocuForge's inspected tool components use browser image APIs and the JavaScript \`pdf-lib\` library for these operations.
+The inspected image tools use browser image and Canvas APIs. The PDF tools use file reads and \`pdf-lib\` in the page. Their file-processing code does not send selected file contents to a DocuForge upload endpoint.
 
-### What Local Processing Means
+That is a narrow statement about these tool components. Opening the site still requests HTML, scripts, styles, and images from the host. The site also loads the Google AdSense library for publisher verification; that is separate from displaying ads, which remains disabled. The contact form sends a submission to Web3Forms when configured.
 
-The inspected file-processing code does not send selected file contents to a DocuForge upload endpoint. This is different from saying the website makes no network requests: browsers still request the page, scripts, styles, and other site resources. Contact-form submissions are also separate and are sent to Web3Forms when the form is configured.
+## Check a workflow, not just a slogan
 
-### Limits and Practical Checks
+To inspect a tool operation, open browser developer tools before selecting a non-sensitive test file. In the Network panel, observe requests while processing and downloading. A network request for a page asset or third-party script does not by itself mean the selected file was uploaded; inspect the request and its payload. Do not use a confidential file for this test.
 
-- Browser memory and processing capacity depend on the device, browser, file, and operation.
-- Closing a tab should not be treated as a guaranteed secure memory-erasure procedure; memory lifecycle is controlled by the browser and operating system.
-- Client-side processing alone does not establish legal compliance or guarantee that a workflow satisfies an organization's privacy requirements.
-- If you want to inspect a particular operation, use your browser's developer tools and review network activity while processing a test file.
-
-For practical file tasks, try the [Merge PDF tool](/merge-pdf), [Compress PDF tool](/compress-pdf), or [Image Compressor](/image-compressor). Keep an original copy and review every output before relying on it.
+Client-side processing does not remove all risks. The browser and device control memory use; large files can fail or slow down a device. Closing a tab is not a guaranteed secure memory-erasure procedure. This architecture is not a legal, security, or compliance certification. Read the [Privacy Policy](/privacy) and follow your organization’s rules before processing sensitive files.
     `
   },
   {
     slug: 'how-to-split-and-extract-pdf-pages',
-    title: 'How to Split Large PDFs and Extract Specific Pages Accurately',
-    description: 'Learn how to extract targeted page ranges, separate multi-invoice documents, and isolate chapters with a browser-based PDF tool.',
-    readingTime: '5 min read',
-    author: 'DocuForge Technical Team',
+    title: 'Extract Specific Pages from a PDF',
+    description: 'Use page numbers and ranges to create one PDF from selected pages, then verify its order and contents.',
+    readingTime: '3 min read',
+    author: 'DocuForge',
     tags: ['PDF Tools', 'Productivity', 'Office Tips'],
     content: `
-## The Challenge of Oversized Multi-Page Documents
+## Enter pages using the document’s page numbers
 
-Whether dealing with a 200-page corporate financial audit, a scanned multi-tenant lease agreement, or an academic course textbook, sharing the entire file when the recipient only needs two specific pages is inefficient, clutters inboxes, and risks exposing confidential sections.
+The [Split PDF tool](/split-pdf) accepts single pages and ranges separated by commas. For example, \`2-4, 7\` means pages 2, 3, 4, and 7. The tool uses 1-based page numbers, checks values against the loaded page count, removes duplicates, and writes the selected pages in ascending order into one new PDF.
 
-Splitting large PDF documents into manageable, targeted files is an essential digital productivity skill.
+## Verify the extracted document
 
-### Practical Scenarios for Splitting PDFs
+1. Open the source PDF and note its total page count. Use the page labels shown by the PDF reader as the tool’s page numbers.
+2. Enter a short range first, such as \`1-2\`, if you are unfamiliar with the document.
+3. Generate the file and open it. Check its page count, first and last pages, and whether the intended sections are present.
+4. If pages are sideways, use [Rotate PDF](/rotate-pdf). To join the extracted pages with another document, use [Merge PDF](/merge-pdf).
 
-- **Isolating Invoices**: Accounting teams frequently receive consolidated monthly billing statements containing dozens of separate client invoices. Splitting allows each client to receive only their specific statement.
-- **Extracting Signed Signature Pages**: Legal teams often need to extract just the executed signature addendum to archive alongside contract summaries.
-- **Submitting Academic Chapters**: University portals frequently limit submission uploads to 10 MB, requiring students to split dissertations into individual chapter files.
-
-### Syntax Rules for Targeted Page Extraction
-
-When using our [Split PDF Tool](/split-pdf), you can define precise extraction targets using standard page range syntax:
-
-- **Hyphen for Continuous Sequences**: Entering \`1-5\` extracts pages 1 through 5 as a unified document.
-- **Comma for Discrete Pages**: Entering \`1, 4, 7\` extracts only pages 1, 4, and 7.
-- **Combined Syntax**: Entering \`1-3, 6, 9-12\` extracts pages 1 through 3, page 6, and pages 9 through 12 into a single new PDF.
-
-### Preserving Document Integrity
-
-When you split a PDF using DocuForge, the tool uses pdf-lib to copy selected pages into a new document. Review the output, especially if the source contains forms, signatures, bookmarks, or other document-specific features.
-
-- If any pages in the extracted document are oriented sideways, use our [Rotate PDF Tool](/rotate-pdf) and review the result.
-- If you need to combine the extracted pages with another document, use our [Merge PDF Tool](/merge-pdf).
+The tool creates a single extracted PDF; it does not create one file per page. It copies selected pages with \`pdf-lib\`, so inspect forms, signatures, bookmarks, links, and other features that matter to your use. Keep the original unchanged.
     `
   }
 ];

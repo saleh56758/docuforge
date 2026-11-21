@@ -123,8 +123,8 @@ export default function CompressPdf() {
           <div className="dropzone-icon" style={{ color: 'var(--color-pdf-tool)' }}>
             <Minimize size={28} />
           </div>
-          <h2 className="dropzone-title">Upload a PDF to compress and optimize</h2>
-          <p className="dropzone-subtitle">Re-saves the PDF with object streams enabled</p>
+          <h2 className="dropzone-title">Re-save a PDF and compare its size</h2>
+          <p className="dropzone-subtitle">Rebuilds pages with object streams; it does not downsample embedded images</p>
           <button type="button" className="dropzone-btn" style={{ backgroundColor: 'var(--color-pdf-tool)' }}>
             Choose PDF Document
           </button>
@@ -158,7 +158,7 @@ export default function CompressPdf() {
           </div>
 
           <div style={{ padding: '1rem', background: 'var(--bg-subtle)', borderRadius: 'var(--radius-md)', marginBottom: '1.5rem', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-            <strong>How PDF optimization works:</strong> The tool rebuilds the document from copied pages and saves it with object streams enabled. File-size results vary by document, and some PDF features may not be retained; review the output before using it.
+            <strong>What this operation does:</strong> The tool rebuilds the document from copied pages and saves it with object streams enabled. It does not downsample embedded images, and the output may be larger. Review the file size and important document features before using it.
           </div>
 
           {!compressedBlob ? (
@@ -170,7 +170,7 @@ export default function CompressPdf() {
                 disabled={isProcessing}
                 style={{ flex: 1, backgroundColor: 'var(--color-pdf-tool)' }}
               >
-                <Minimize size={18} /> {isProcessing ? 'Optimizing PDF...' : 'Optimize & Compress PDF'}
+                <Minimize size={18} /> {isProcessing ? 'Re-saving PDF...' : 'Re-save PDF and Compare Size'}
               </button>
             </div>
           ) : (
