@@ -80,6 +80,12 @@ const checkRouteCoverage = (name, expected, actual) => {
 checkRouteCoverage('Tool', slugsFrom(toolSource), Object.keys(catalog.tools));
 checkRouteCoverage('Guide', slugsFrom(guideSource), Object.keys(catalog.guides));
 
+const guideIndexSource = await readFile(path.join(root, 'src', 'app', 'guides', 'page.tsx'), 'utf8');
+const guideIndexImages = [...guideIndexSource.matchAll(/IMAGE_CATALOG\.guides\[guide\.slug\]\.imageBase/g)];
+if (!guideIndexSource.includes('ResponsiveImage') || guideIndexImages.length !== 1) {
+  errors.push('Guides index must render each card with its cataloged guide image.');
+}
+
 const blogSource = await readFile(path.join(root, 'src', 'app', 'blog', 'page.tsx'), 'utf8');
 const blogKeys = [...blogSource.matchAll(/IMAGE_CATALOG\.blog\['([^']+)'\]/g)].map((match) => match[1]);
 checkRouteCoverage('Blog workflow', Object.keys(catalog.blog), blogKeys);

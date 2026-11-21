@@ -4,7 +4,7 @@
 
 The previous integration had only three stock-photo source families for the homepage, tool headers, About page, workflow cards, and guide features. The image files themselves were not exact byte-for-byte duplicates; the problem was reuse of the same photographs across unrelated placements.
 
-The site now has 25 distinct stock-photo placements with unique Unsplash source URLs and local asset bases: one homepage hero, 12 tool headers, four workflow cards on `/blog`, and eight individual guide features. The guides index is text-only so it does not repeat the featured image of each article. The generic corridor photo was removed from About because it did not add useful context. No ordinary stock photo is intentionally reused.
+The site now has 25 distinct stock-photo placements with unique Unsplash source URLs and local asset bases: one homepage hero, 12 tool headers, four workflow cards on `/blog`, and eight guide cards with matching featured images on the guide detail routes. The guides index and each guide detail use the same unique guide image. The generic corridor photo was removed from About because it did not add useful context. No ordinary stock photo is intentionally reused.
 
 ## Audit findings and changes
 
@@ -14,7 +14,7 @@ The site now has 25 distinct stock-photo placements with unique Unsplash source 
 | Image tools | Multiple image tools shared one workspace photo. | Assigned a separate contextual photo to each of the seven image-tool routes. |
 | PDF tools | Multiple PDF tools shared one document photo. | Assigned a separate contextual photo to each of the five PDF-tool routes. |
 | Blog/workflow cards | Two cards shared the same document photo; the remaining cards drew from the same small set. | Each of the four workflow cards now has a distinct image. |
-| Guides | Guide listings and article pages reused three generic photos across unrelated articles. | Each of the eight article pages has its own featured photo; the guide listing no longer repeats those photos. |
+| Guides | Guide listings and article pages reused three generic photos across unrelated articles. | Each of the eight guide cards and its matching article page has its own featured photo. |
 | About | The reused stock photo showed an empty office corridor and did not communicate DocuForge's identity. | Removed the photo rather than replacing it with decoration. |
 | Asset inventory | The old three photos each had 800, 1200, and 1800-pixel variants. SHA-256 checks found no identical files, but the same source photos appeared repeatedly in page code. | Removed the superseded files and added unique local WebP assets. |
 
