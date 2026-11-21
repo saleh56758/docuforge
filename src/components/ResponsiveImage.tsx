@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ResponsiveImageProps {
-  imageBase: 'document-management-workflow' | 'digital-workspace-tools' | 'document-planning-productivity';
+  imageBase: string;
   alt: string;
   className?: string;
   eager?: boolean;
@@ -23,12 +23,12 @@ export default function ResponsiveImage({
     <picture>
       <source
         type="image/webp"
-        srcSet={`/images/${imageBase}-800.webp 800w, /images/${imageBase}-1200.webp 1200w, /images/${imageBase}.webp 1800w`}
+        srcSet={`/images/${imageBase}-800.webp 800w, /images/${imageBase}.webp 1200w`}
         sizes={sizes}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`/images/${imageBase}-1200.webp`}
+        src={`/images/${imageBase}.webp`}
         alt={alt}
         className={className}
         width={width}

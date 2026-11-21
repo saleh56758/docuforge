@@ -8,6 +8,7 @@ import ToolCard from '@/components/ToolCard';
 import FaqSection from '@/components/FaqSection';
 import AdPlaceholder from '@/components/AdPlaceholder';
 import ResponsiveImage from '@/components/ResponsiveImage';
+import { IMAGE_CATALOG } from '@/data/imageCatalog';
 
 const HOMEPAGE_FAQS = [
   {
@@ -54,8 +55,8 @@ export default function HomePage() {
           </div>
           <figure className="hero-image">
             <ResponsiveImage
-              imageBase="digital-workspace-tools"
-              alt="Organized digital workspace with a laptop and documents"
+              imageBase={IMAGE_CATALOG.homepage.imageBase}
+              alt={IMAGE_CATALOG.homepage.alt}
               eager
               sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1024px) 44vw, 560px"
               width={1200}

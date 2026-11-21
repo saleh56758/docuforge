@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "node scripts/serve-static.mjs",
     "lint": "next lint",
-    "test:seo": "node scripts/verify-seo.mjs"
+    "test:seo": "node scripts/verify-seo.mjs",
+    "check:images": "node scripts/check-image-diversity.mjs"
   },
   "dependencies": {
     "next": "^14.2.24",

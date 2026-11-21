@@ -7,6 +7,7 @@ import AdPlaceholder from '@/components/AdPlaceholder';
 import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 import { Clock, User, ArrowRight } from 'lucide-react';
 import ResponsiveImage from '@/components/ResponsiveImage';
+import { IMAGE_CATALOG } from '@/data/imageCatalog';
 
 interface Props {
   params: {
@@ -59,19 +60,7 @@ export default function GuideDetailPage({ params }: Props) {
   const guide = getGuideBySlug(params.slug);
   if (!guide) notFound();
 
-  const usesPdfImage =
-    guide.slug.includes('pdf') ||
-    guide.slug.includes('merge') ||
-    guide.slug.includes('split') ||
-    guide.slug.includes('convert-images');
-  const featuredImage = usesPdfImage
-    ? 'document-management-workflow'
-    : guide.slug.includes('client-side')
-      ? 'document-planning-productivity'
-      : 'digital-workspace-tools';
-  const featuredAlt = usesPdfImage
-    ? 'Document pages and a desk setup used in a PDF workflow'
-    : 'Digital workspace used to prepare or convert files';
+  const featuredImage = IMAGE_CATALOG.guides[guide.slug];
 
   const canonicalUrl = getAbsoluteUrl(`guides/${guide.slug}`);
 
@@ -245,8 +234,8 @@ export default function GuideDetailPage({ params }: Props) {
         </div>
         <figure className="article-featured-image">
           <ResponsiveImage
-            imageBase={featuredImage as 'document-management-workflow' | 'digital-workspace-tools' | 'document-planning-productivity'}
-            alt={featuredAlt}
+            imageBase={featuredImage.imageBase}
+            alt={featuredImage.alt}
             eager
             sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 860px) 820px, 820px"
           />

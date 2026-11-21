@@ -1,0 +1,258 @@
+{
+  "homepage": {
+    "imageBase": "home-workspace",
+    "alt": "Laptop and monitor on a bright home-office desk",
+    "route": "/ (homepage hero)",
+    "sourceUrl": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+    "downloadUrl": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "attribution": "Not required"
+  },
+  "tools": {
+    "image-compressor": {
+      "imageBase": "tool-image-compressor",
+      "alt": "Person using a laptop at a desk",
+      "route": "/image-compressor (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+      "downloadUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "image-resizer": {
+      "imageBase": "tool-image-resizer",
+      "alt": "Laptop with an illuminated display in a dark workspace",
+      "route": "/image-resizer (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
+      "downloadUrl": "https://images.unsplash.com/photo-1531297484001-80022131f5a1?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "image-cropper": {
+      "imageBase": "tool-image-cropper",
+      "alt": "Winding road through a rocky mountain landscape",
+      "route": "/image-cropper (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+      "downloadUrl": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "image-converter": {
+      "imageBase": "tool-image-converter",
+      "alt": "Smartphone displaying a grid of photographs",
+      "route": "/image-converter (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1586953208448-b95a79798f07",
+      "downloadUrl": "https://images.unsplash.com/photo-1586953208448-b95a79798f07?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "jpg-to-webp": {
+      "imageBase": "tool-jpg-to-webp",
+      "alt": "Green valley below distant hills",
+      "route": "/jpg-to-webp (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e",
+      "downloadUrl": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "webp-to-jpg": {
+      "imageBase": "tool-webp-to-jpg",
+      "alt": "Sun setting behind a mountain ridge",
+      "route": "/webp-to-jpg (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1500534623283-312aade485b7",
+      "downloadUrl": "https://images.unsplash.com/photo-1500534623283-312aade485b7?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "png-to-jpg": {
+      "imageBase": "tool-png-to-jpg",
+      "alt": "Layered mountains in a misty landscape",
+      "route": "/png-to-jpg (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
+      "downloadUrl": "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "merge-pdf": {
+      "imageBase": "tool-merge-pdf",
+      "alt": "Clipboard checklist beside a laptop",
+      "route": "/merge-pdf (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1586281380349-632531db7ed4",
+      "downloadUrl": "https://images.unsplash.com/photo-1586281380349-632531db7ed4?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "split-pdf": {
+      "imageBase": "tool-split-pdf",
+      "alt": "Person reviewing content on a laptop",
+      "route": "/split-pdf (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1516387938699-a93567ec168e",
+      "downloadUrl": "https://images.unsplash.com/photo-1516387938699-a93567ec168e?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "rotate-pdf": {
+      "imageBase": "tool-rotate-pdf",
+      "alt": "Person writing on a sheet of paper with a pen",
+      "route": "/rotate-pdf (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85",
+      "downloadUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "compress-pdf": {
+      "imageBase": "tool-compress-pdf",
+      "alt": "Hand holding a phone calculator over paperwork",
+      "route": "/compress-pdf (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c",
+      "downloadUrl": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "image-to-pdf": {
+      "imageBase": "tool-image-to-pdf",
+      "alt": "Open notebook and pen on a desk",
+      "route": "/image-to-pdf (tool header)",
+      "sourceUrl": "https://images.unsplash.com/photo-1517842645767-c639042777db",
+      "downloadUrl": "https://images.unsplash.com/photo-1517842645767-c639042777db?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    }
+  },
+  "blog": {
+    "prepare-image": {
+      "imageBase": "blog-prepare-image",
+      "alt": "People collaborating around laptops at a shared table",
+      "route": "/blog (prepare-an-image workflow card)",
+      "sourceUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+      "downloadUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "scanned-pdf": {
+      "imageBase": "blog-scanned-pdf",
+      "alt": "Planner, pen, and coffee on a calendar page",
+      "route": "/blog (assemble-scans workflow card)",
+      "sourceUrl": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe",
+      "downloadUrl": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "extract-pages": {
+      "imageBase": "blog-extract-pages",
+      "alt": "Hand writing notes on paper",
+      "route": "/blog (extract-page-range workflow card)",
+      "sourceUrl": "https://images.unsplash.com/photo-1455390582262-044cdead277a",
+      "downloadUrl": "https://images.unsplash.com/photo-1455390582262-044cdead277a?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "pdf-size": {
+      "imageBase": "blog-pdf-size",
+      "alt": "Chart and ruler on a paper report",
+      "route": "/blog (PDF file-size workflow card)",
+      "sourceUrl": "https://images.unsplash.com/photo-1543286386-713bdd548da4",
+      "downloadUrl": "https://images.unsplash.com/photo-1543286386-713bdd548da4?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    }
+  },
+  "guides": {
+    "how-to-compress-images-without-losing-quality": {
+      "imageBase": "guide-compress-images",
+      "alt": "Mountain lake surrounded by forested peaks",
+      "route": "/guides/how-to-compress-images-without-losing-quality (article featured image)",
+      "sourceUrl": "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",
+      "downloadUrl": "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "jpg-vs-png-vs-webp-comparison": {
+      "imageBase": "guide-format-comparison",
+      "alt": "Camera body and lens on a dark surface",
+      "route": "/guides/jpg-vs-png-vs-webp-comparison (article featured image)",
+      "sourceUrl": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32",
+      "downloadUrl": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "how-to-reduce-pdf-file-size": {
+      "imageBase": "guide-pdf-size",
+      "alt": "Financial paperwork and a coffee cup on a desk",
+      "route": "/guides/how-to-reduce-pdf-file-size (article featured image)",
+      "sourceUrl": "https://images.unsplash.com/photo-1554224154-22dec7ec8818",
+      "downloadUrl": "https://images.unsplash.com/photo-1554224154-22dec7ec8818?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "how-to-merge-pdf-files-securely": {
+      "imageBase": "guide-merge-pdf",
+      "alt": "Clipboard and laptop arranged on a desk",
+      "route": "/guides/how-to-merge-pdf-files-securely (article featured image)",
+      "sourceUrl": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b",
+      "downloadUrl": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "how-to-convert-images-to-pdf": {
+      "imageBase": "guide-images-to-pdf",
+      "alt": "Person selecting a book from a shelf",
+      "route": "/guides/how-to-convert-images-to-pdf (article featured image)",
+      "sourceUrl": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0",
+      "downloadUrl": "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "how-to-crop-and-resize-images-for-web-and-social-media": {
+      "imageBase": "guide-crop-resize",
+      "alt": "Small boat on a turquoise alpine lake",
+      "route": "/guides/how-to-crop-and-resize-images-for-web-and-social-media (article featured image)",
+      "sourceUrl": "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
+      "downloadUrl": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "why-client-side-file-tools-are-safer": {
+      "imageBase": "guide-client-side",
+      "alt": "Hands typing on a laptop",
+      "route": "/guides/why-client-side-file-tools-are-safer (article featured image)",
+      "sourceUrl": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+      "downloadUrl": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    },
+    "how-to-split-and-extract-pdf-pages": {
+      "imageBase": "guide-extract-pages",
+      "alt": "Stacks of books in a library",
+      "route": "/guides/how-to-split-and-extract-pdf-pages (article featured image)",
+      "sourceUrl": "https://images.unsplash.com/photo-1516979187457-637abb4f9353",
+      "downloadUrl": "https://images.unsplash.com/photo-1516979187457-637abb4f9353?fit=crop&crop=entropy&w=1400&h=933&fm=jpg&q=84",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "attribution": "Not required"
+    }
+  }
+}

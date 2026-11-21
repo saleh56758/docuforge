@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Sparkles } from 'lucide-react';
 import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
-import ResponsiveImage from '@/components/ResponsiveImage';
 
 export const metadata: Metadata = {
   title: 'About DocuForge — Free Browser-Based Image & PDF Tools',
@@ -43,14 +42,6 @@ export default function AboutPage() {
         <p className="article-meta" style={{ fontSize: '1.0625rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
           A suite of 12 free image and PDF utilities with browser-based file processing.
         </p>
-        <figure className="article-featured-image">
-          <ResponsiveImage
-            imageBase="document-management-workflow"
-            alt="Documents and paperwork organized on a desk"
-            eager
-            sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 860px) 820px, 820px"
-          />
-        </figure>
       </header>
 
       <div className="prose">

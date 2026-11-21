@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, FileImage, FileText, Layers, ListChecks } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ResponsiveImage from '@/components/ResponsiveImage';
+import { IMAGE_CATALOG } from '@/data/imageCatalog';
 import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 
 export const metadata: Metadata = {
@@ -37,8 +38,7 @@ export default function BlogIndexPage() {
         'Start with the target pixel dimensions. Resize the image, export a candidate format, then compare the downloaded dimensions, byte size, and visible detail with the original.',
       icon: <FileImage size={20} aria-hidden="true" />,
       steps: ['Choose target width and height', 'Keep proportions unless you intend to distort', 'Compare the export before publishing'],
-      imageBase: 'digital-workspace-tools' as const,
-      imageAlt: 'Laptop and digital workspace used to prepare an image',
+      image: IMAGE_CATALOG.blog['prepare-image'],
       toolHref: '/image-resizer',
       toolLabel: 'Open Image Resizer',
       guideHref: '/guides/how-to-compress-images-without-losing-quality',
@@ -50,8 +50,7 @@ export default function BlogIndexPage() {
         'Sort files before uploading, confirm the page order, select A4 or US Letter, and choose a margin. The tool places one image on each page; it does not run OCR or extract text.',
       icon: <Layers size={20} aria-hidden="true" />,
       steps: ['Name or order scans clearly', 'Set page size, orientation, and margin', 'Open the PDF and inspect every page'],
-      imageBase: 'document-management-workflow' as const,
-      imageAlt: 'Printed documents organized in a document workflow',
+      image: IMAGE_CATALOG.blog['scanned-pdf'],
       toolHref: '/image-to-pdf',
       toolLabel: 'Open Image to PDF',
       guideHref: '/guides/how-to-convert-images-to-pdf',
@@ -63,8 +62,7 @@ export default function BlogIndexPage() {
         'Use comma-separated page numbers and ranges such as “2-4, 7” to create a single PDF containing those pages. Check the page count and inspect the result before sharing.',
       icon: <ListChecks size={20} aria-hidden="true" />,
       steps: ['Check the source page count', 'Enter pages using 1-based numbering', 'Review the extracted PDF and keep the original'],
-      imageBase: 'document-management-workflow' as const,
-      imageAlt: 'PDF pages and documents arranged for page extraction',
+      image: IMAGE_CATALOG.blog['extract-pages'],
       toolHref: '/split-pdf',
       toolLabel: 'Open Split PDF',
       guideHref: '/guides/how-to-split-and-extract-pdf-pages',
@@ -76,8 +74,7 @@ export default function BlogIndexPage() {
         'DocuForge’s PDF tool re-saves copied pages with object streams; it does not downsample embedded images. If the file contains large scans, resize or compress the source images and rebuild the PDF, then compare both outputs.',
       icon: <FileText size={20} aria-hidden="true" />,
       steps: ['Compare the source and re-saved file sizes', 'For image-heavy PDFs, reduce image dimensions before creating the PDF', 'Verify text, forms, and signatures in the chosen output'],
-      imageBase: 'document-planning-productivity' as const,
-      imageAlt: 'Work planning desk for reviewing a document workflow',
+      image: IMAGE_CATALOG.blog['pdf-size'],
       toolHref: '/compress-pdf',
       toolLabel: 'Open PDF Size Check',
       guideHref: '/guides/how-to-reduce-pdf-file-size',
@@ -106,8 +103,8 @@ export default function BlogIndexPage() {
           <article key={workflow.title} className="tool-card" style={{ padding: '1.5rem' }}>
             <figure className="workflow-card-image">
               <ResponsiveImage
-                imageBase={workflow.imageBase}
-                alt={workflow.imageAlt}
+                imageBase={workflow.image.imageBase}
+                alt={workflow.image.alt}
                 sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1200px) 50vw, 380px"
               />
             </figure>

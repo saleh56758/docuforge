@@ -21,6 +21,7 @@ import FaqSection from './FaqSection';
 import AdPlaceholder from './AdPlaceholder';
 import ToolCard from './ToolCard';
 import ResponsiveImage from './ResponsiveImage';
+import { IMAGE_CATALOG } from '@/data/imageCatalog';
 
 interface ToolPageContainerProps {
   tool: ToolMetadata;
@@ -84,6 +85,7 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
   const relatedGuides = GUIDES.filter((guide) =>
     (relatedGuideSlugsByTool[tool.slug] ?? []).includes(guide.slug)
   );
+  const contextualImage = IMAGE_CATALOG.tools[tool.slug];
   const canonicalUrl = getAbsoluteUrl(tool.slug);
 
   const webAppSchema = {
@@ -135,8 +137,8 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
           </div>
           <figure className="tool-context-image">
             <ResponsiveImage
-              imageBase={isImage ? 'digital-workspace-tools' : 'document-management-workflow'}
-              alt={isImage ? 'Digital workspace for preparing and converting images' : 'Document workflow for organizing and processing PDF files'}
+              imageBase={contextualImage.imageBase}
+              alt={contextualImage.alt}
               eager
               sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1024px) 36vw, 420px"
               width={1200}
