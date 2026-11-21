@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BookOpen, ArrowRight, Clock } from 'lucide-react';
 import { GUIDES } from '@/data/guides';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import ResponsiveImage from '@/components/ResponsiveImage';
 import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 
 export const metadata: Metadata = {
@@ -57,6 +58,23 @@ export default function GuidesIndexPage() {
             className="tool-card"
             style={{ padding: '1.5rem' }}
           >
+            <figure className="guide-card-image">
+              <ResponsiveImage
+                imageBase={
+                  guide.slug.includes('pdf') || guide.slug.includes('merge') || guide.slug.includes('split') || guide.slug.includes('convert-images')
+                    ? 'document-management-workflow'
+                    : guide.slug.includes('client-side')
+                      ? 'document-planning-productivity'
+                      : 'digital-workspace-tools'
+                }
+                alt={
+                  guide.slug.includes('pdf') || guide.slug.includes('merge') || guide.slug.includes('split')
+                    ? 'Document pages organized for a PDF workflow'
+                    : 'Digital workspace for an image and file workflow'
+                }
+                sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1200px) 50vw, 380px"
+              />
+            </figure>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
                 <Clock size={13} /> {guide.readingTime}

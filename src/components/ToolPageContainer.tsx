@@ -20,6 +20,7 @@ import HowToSection from './HowToSection';
 import FaqSection from './FaqSection';
 import AdPlaceholder from './AdPlaceholder';
 import ToolCard from './ToolCard';
+import ResponsiveImage from './ResponsiveImage';
 
 interface ToolPageContainerProps {
   tool: ToolMetadata;
@@ -117,19 +118,31 @@ export default function ToolPageContainer({ tool, children }: ToolPageContainerP
 
       {/* Tool Header */}
       <section className="tool-header-section">
-        <div className="tool-header-content">
-          <div className="tool-badge-row">
-            <span className={`category-tag ${isImage ? 'is-image' : 'is-pdf'}`}>
-              {isImage ? 'Image Tool' : 'PDF Tool'}
-            </span>
-            {tool.badge && <span className="tool-card-badge">{tool.badge}</span>}
-            <span className="tool-browser-status" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: 'var(--color-success)', fontWeight: 600 }}>
-              <ShieldCheck size={14} aria-hidden="true" /> Browser-based file processing
-            </span>
-          </div>
+        <div className="tool-header-layout">
+          <div className="tool-header-content">
+            <div className="tool-badge-row">
+              <span className={`category-tag ${isImage ? 'is-image' : 'is-pdf'}`}>
+                {isImage ? 'Image Tool' : 'PDF Tool'}
+              </span>
+              {tool.badge && <span className="tool-card-badge">{tool.badge}</span>}
+              <span className="tool-browser-status" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: 'var(--color-success)', fontWeight: 600 }}>
+                <ShieldCheck size={14} aria-hidden="true" /> Browser-based file processing
+              </span>
+            </div>
 
-          <h1 className="tool-page-title">{tool.title}</h1>
-          <p className="tool-page-subtitle">{tool.fullDescription}</p>
+            <h1 className="tool-page-title">{tool.title}</h1>
+            <p className="tool-page-subtitle">{tool.fullDescription}</p>
+          </div>
+          <figure className="tool-context-image">
+            <ResponsiveImage
+              imageBase={isImage ? 'digital-workspace-tools' : 'document-management-workflow'}
+              alt={isImage ? 'Digital workspace for preparing and converting images' : 'Document workflow for organizing and processing PDF files'}
+              eager
+              sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1024px) 36vw, 420px"
+              width={1200}
+              height={800}
+            />
+          </figure>
         </div>
       </section>
 

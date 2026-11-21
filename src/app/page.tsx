@@ -7,6 +7,7 @@ import HomeDiscovery from '@/components/HomeDiscovery';
 import ToolCard from '@/components/ToolCard';
 import FaqSection from '@/components/FaqSection';
 import AdPlaceholder from '@/components/AdPlaceholder';
+import ResponsiveImage from '@/components/ResponsiveImage';
 
 const HOMEPAGE_FAQS = [
   {
@@ -39,15 +40,29 @@ export default function HomePage() {
     <div className="container">
       {/* Hero Section */}
       <section className="hero-section" aria-labelledby="hero-title">
-        <div className="hero-badge">
-          <ShieldCheck size={14} aria-hidden="true" /> Browser-based file processing
+        <div className="hero-layout">
+          <div className="hero-copy">
+            <div className="hero-badge">
+              <ShieldCheck size={14} aria-hidden="true" /> Browser-based file processing
+            </div>
+            <h1 id="hero-title" className="hero-title">
+              Free Online Image and PDF Tools
+            </h1>
+            <p className="hero-subtitle">
+              Image and PDF tools that process selected files in your browser. No account is required; website and third-party requests are separate from file processing.
+            </p>
+          </div>
+          <figure className="hero-image">
+            <ResponsiveImage
+              imageBase="digital-workspace-tools"
+              alt="Organized digital workspace with a laptop and documents"
+              eager
+              sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1024px) 44vw, 560px"
+              width={1200}
+              height={800}
+            />
+          </figure>
         </div>
-        <h1 id="hero-title" className="hero-title">
-          Free Online Image and PDF Tools
-        </h1>
-        <p className="hero-subtitle">
-          Image and PDF tools that process selected files in your browser. No account is required; website and third-party requests are separate from file processing.
-        </p>
 
         <h2 className="hero-discovery-heading">Explore image and PDF tools</h2>
 

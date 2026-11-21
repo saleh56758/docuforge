@@ -2191,6 +2191,184 @@ textarea {
   }
 }
 
+/* Responsive editorial and contextual imagery */
+.hero-layout,
+.tool-header-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.hero-copy {
+  min-width: 0;
+  text-align: left;
+}
+
+.hero-copy .hero-title,
+.hero-copy .hero-subtitle {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 680px;
+}
+
+.hero-copy .hero-badge {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.hero-image,
+.tool-context-image,
+.article-featured-image,
+.guide-card-image,
+.workflow-card-image {
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-subtle);
+}
+
+.hero-image picture,
+.tool-context-image picture,
+.article-featured-image picture,
+.guide-card-image picture,
+.workflow-card-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-image img,
+.tool-context-image img,
+.article-featured-image img,
+.guide-card-image img,
+.workflow-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: cover;
+}
+
+.hero-image {
+  aspect-ratio: 3 / 2;
+}
+
+.hero-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.tool-header-layout {
+  max-width: 100%;
+}
+
+.tool-context-image {
+  aspect-ratio: 3 / 2;
+}
+
+.tool-context-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.article-featured-image {
+  margin-top: 1.5rem;
+  aspect-ratio: 3 / 2;
+}
+
+.article-featured-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.guide-card-image,
+.workflow-card-image {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+}
+
+.guide-card-image img,
+.workflow-card-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 769px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+    gap: 2.5rem;
+  }
+
+  .hero-section {
+    text-align: left;
+  }
+
+  .hero-copy .hero-discovery-heading {
+    text-align: left;
+  }
+
+  .tool-header-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-layout {
+    gap: 1.25rem;
+  }
+
+  .hero-copy {
+    text-align: left;
+  }
+
+  .hero-image {
+    max-height: 280px;
+  }
+
+  .tool-header-layout {
+    gap: 1.25rem;
+  }
+
+  .tool-context-image {
+    max-height: 240px;
+  }
+
+  .article-featured-image {
+    max-height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image,
+  .tool-context-image,
+  .article-featured-image {
+    border-radius: var(--radius-md);
+  }
+
+  .hero-image {
+    max-height: 220px;
+  }
+
+  .tool-context-image {
+    max-height: 200px;
+  }
+
+  .article-featured-image {
+    max-height: 220px;
+  }
+
+  .guide-card-image,
+  .workflow-card-image {
+    margin-bottom: 0.875rem;
+  }
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);

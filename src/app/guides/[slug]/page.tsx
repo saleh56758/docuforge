@@ -6,6 +6,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import AdPlaceholder from '@/components/AdPlaceholder';
 import { getAbsoluteUrl, SITE_CONFIG } from '@/utils/siteConfig';
 import { Clock, User, ArrowRight } from 'lucide-react';
+import ResponsiveImage from '@/components/ResponsiveImage';
 
 interface Props {
   params: {
@@ -57,6 +58,20 @@ export function generateMetadata({ params }: Props): Metadata {
 export default function GuideDetailPage({ params }: Props) {
   const guide = getGuideBySlug(params.slug);
   if (!guide) notFound();
+
+  const usesPdfImage =
+    guide.slug.includes('pdf') ||
+    guide.slug.includes('merge') ||
+    guide.slug.includes('split') ||
+    guide.slug.includes('convert-images');
+  const featuredImage = usesPdfImage
+    ? 'document-management-workflow'
+    : guide.slug.includes('client-side')
+      ? 'document-planning-productivity'
+      : 'digital-workspace-tools';
+  const featuredAlt = usesPdfImage
+    ? 'Document pages and a desk setup used in a PDF workflow'
+    : 'Digital workspace used to prepare or convert files';
 
   const canonicalUrl = getAbsoluteUrl(`guides/${guide.slug}`);
 
@@ -228,6 +243,14 @@ export default function GuideDetailPage({ params }: Props) {
             <Clock size={14} aria-hidden="true" /> {guide.readingTime}
           </span>
         </div>
+        <figure className="article-featured-image">
+          <ResponsiveImage
+            imageBase={featuredImage as 'document-management-workflow' | 'digital-workspace-tools' | 'document-planning-productivity'}
+            alt={featuredAlt}
+            eager
+            sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 860px) 820px, 820px"
+          />
+        </figure>
       </header>
 
       <div className="prose">
